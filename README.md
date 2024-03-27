@@ -16,4 +16,4 @@ Docker is a container technology and can be used for creating and managing them.
 
 1. Maintain parity between environments
 2. Lightweight compared to a Virtual Machine
-
+3. Everything our app needs, nothing more
