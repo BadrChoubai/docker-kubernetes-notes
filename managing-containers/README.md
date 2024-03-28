@@ -10,6 +10,16 @@ running `docker help` in your terminal will give you all of the available option
 
 [Docker CLI Friendly Manual](https://docs.docker.com/reference/cli/docker/)
 
+### `docker build`
+
+``` bash
+Usage: docker build [OPTIONS] [Dockerfile] | [Path]
+
+Options:
+    -q, --quiet
+    -t, --tag
+```
+
 ### `docker container`
 
 ```bash
@@ -62,16 +72,6 @@ Usage: docker image prune [OPTIONS]
 
 Options:
     -a, --all
-```
-
-### `docker build`
-
-``` bash
-Usage: docker build [OPTIONS] [Dockerfile] | [Path]
-
-Options:
-    -q, --quiet
-    -t, --tag
 ```
 
 ### `docker push`
