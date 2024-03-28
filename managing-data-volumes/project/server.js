@@ -45,8 +45,4 @@ app.post('/create', async (req, res) => {
   });
 });
 
-const port = process.env.PORT 
-    ? process.env.PORT
-    : 80
-
-app.listen(80);
+app.listen(process.env.PORT);

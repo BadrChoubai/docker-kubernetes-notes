@@ -1,6 +1,8 @@
 # Build your image up from another base image
 FROM node
 
+ARG DEFAULT_PORT=80
+
 # Subsequent commands will be run relative to WORKDIR
 WORKDIR /app
 
@@ -12,7 +14,7 @@ RUN npm install
 # Which files from our machine should go into our image/container
 COPY . /app
 
-ENV PORT 80
+ENV PORT $DEFAULT_PORT
 
 EXPOSE $PORT
 
