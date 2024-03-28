@@ -17,3 +17,8 @@ In a docker container we can consider two types of data we may need to manage:
     - Stored in files or a database
     - Must not be lost if container stops or restarts
 
+## Command-Line Management of Volumes
+
+```bash
+docker volumes --help
+```
