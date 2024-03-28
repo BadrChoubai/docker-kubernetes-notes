@@ -9,7 +9,7 @@ if chosen_system != '1' and chosen_system != '2':
 height_unit = 'meters'
 weight_unit = 'kilograms'
 
-if (chosen_system == '2'):
+if chosen_system == '2':
     height_unit = 'feet'
     weight_unit = 'pounds'
 
