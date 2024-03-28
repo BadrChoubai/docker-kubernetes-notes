@@ -17,6 +17,24 @@ In a docker container we can consider two types of data we may need to manage:
     - Stored in files or a database
     - Must not be lost if container stops or restarts
 
+## Volumes Comparison
+
+1. Anonymous Volumes:
+    - Createed specifically for a single container
+    - Survives container shutdown or restart unless `--rm` flag is used
+    - Can not be shared across containers
+    - Anonymous, hence cannot be reused
+2. Named Volumes:
+    - Created in general &mdash; not tied to any specific container
+    - Survives container shutdown or restart
+    - Can be shared across containers
+    - Can be re-used for same container across restarts
+3. Bind Mounts:
+    - Location on host file system, not tied to any specific container
+    - Survives container shutdown or restart and removal on hosts
+    - Can be shared across containers
+    - Can be re-used for same container across restarts
+
 ## Command-Line Management of Volumes
 
 ```bash
