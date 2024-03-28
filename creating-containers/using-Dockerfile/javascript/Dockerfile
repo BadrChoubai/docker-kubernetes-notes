@@ -4,11 +4,13 @@ FROM node
 # Subsequent commands will be run relative to WORKDIR
 WORKDIR /app
 
-# Which files from our machine should go into our image/container
-COPY . /app
+COPY package.json /app
 
 # Executes with the creation of our image
 RUN npm install
+
+# Which files from our machine should go into our image/container
+COPY . /app
 
 EXPOSE 80
 
