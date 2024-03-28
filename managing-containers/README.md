@@ -43,6 +43,16 @@ Options:
     -q, --quiet
 ```
 
+### `docker image inspect`
+
+```bash
+Usage: docker image inspect [OPTIONS] IMAGE [IMAGE...]
+
+Options:
+    -f, --format
+```
+
+
 ### `docker image prune`
 
 ```bash
