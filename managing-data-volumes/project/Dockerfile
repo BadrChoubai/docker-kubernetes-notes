@@ -14,5 +14,8 @@ COPY . /app
 
 EXPOSE 80
 
+# Mount a volume for persistant storage of application data
+VOLUME [ "/app/feedback" ]
+
 # Executes with the starting of our container
 CMD [ "node", "server.js" ]

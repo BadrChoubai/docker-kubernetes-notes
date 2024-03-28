@@ -1,5 +1,11 @@
 # Managing Data and Volumes
 
+[Volumes Documentation](https://docs.docker.com/storage/volumes/)
+
+Volumes are folders on your host machine which are mounted ("made available")
+into containers. Some benefits of volumes are that they will persist between
+container runs and containers can both read and write to them.
+
 In a docker container we can consider two types of data we may need to manage:
 
 1. Temporary application data: [Stored with containers]
