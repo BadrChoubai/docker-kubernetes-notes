@@ -12,7 +12,9 @@ RUN npm install
 # Which files from our machine should go into our image/container
 COPY . /app
 
-EXPOSE 80
+ENV PORT 80
+
+EXPOSE $PORT
 
 # Mount an anonoymous volume for storage of application data
 # VOLUME [ "/app/feedback" ]
