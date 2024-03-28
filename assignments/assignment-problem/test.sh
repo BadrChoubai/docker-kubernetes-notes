@@ -8,7 +8,7 @@ pushd node-app || exit
 docker build -q -t node-app .
 docker run -d --name node-app-local -p 8080:3000 node-app
 sleep 5
-curl localhost:8080 | jq .message
+curl localhost:8080
 popd || exit
 
 echo "Testing python-app"
