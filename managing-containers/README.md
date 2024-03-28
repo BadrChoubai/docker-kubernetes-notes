@@ -43,6 +43,17 @@ Options:
     -q, --quiet
 ```
 
+### `docker image prune`
+
+```bash
+Usage: docker image prune [OPTIONS]
+
+# Use to remove unused images
+
+Options:
+    -a, --all
+```
+
 ### `docker build`
 
 ``` bash
