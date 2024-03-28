@@ -99,6 +99,7 @@ Options:
 Usage: docker run [OPTIONS] [CONTAINER_NAME]
 
 Options:
+    --name              give the running container a custom name
     --rm                automatically remove the container when it exits
     -d, --detached
     -i, --interactive
