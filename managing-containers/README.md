@@ -89,6 +89,7 @@ Options:
 Usage: docker run [OPTIONS] [CONTAINER_NAME]
 
 Options:
+    --rm                automatically remove the container when it exits
     -d, --detached
     -i, --interactive
     -p, --publish
