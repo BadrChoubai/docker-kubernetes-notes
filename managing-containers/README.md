@@ -52,6 +52,18 @@ Options:
 Usage: docker push [OPTIONS] REGISTRY[:TAG]
 ```
 
+### `docker rmi`
+
+``` bash
+Usage: docker rmi [OPTIONS] IMAGE [IMAGE...]
+
+# One or more image names may be passed to this command; `$(docker images -aq)` 
+# outputs a list of all image IDs and can be used to remove all images not being
+# used by a running container
+
+Options:
+    -f, --force
+```
 
 ### `docker run`
 
