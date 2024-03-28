@@ -18,4 +18,4 @@ EXPOSE 80
 # VOLUME [ "/app/feedback" ]
 
 # Executes with the starting of our container
-CMD [ "node", "server.js" ]
+CMD [ "npm", "start" ]
