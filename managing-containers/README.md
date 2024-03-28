@@ -24,6 +24,13 @@ Usage: docker container logs [OPTIONS]
 Options:
     -f, --follow
     -n, --tail
+
+Usage: docker container rm [OPTIONS] CONTAINER [CONTAINER...]
+
+# Used to remove stopped containers
+
+Options:
+    -f, --force
 ```
 
 ### `docker images`
