@@ -12,7 +12,7 @@ Some notes on images:
 you will need to re-build your image each time you'd like an external change to
 be picked up.
 2. Images are layer-based meaning that if you build or re-build an image only 
-the instructions that you change will be executed inside your `Dockerfile`.
+the instructions that detect changes will be executed inside your `Dockerfile`.
 
 
 ### Friendly Manuals
