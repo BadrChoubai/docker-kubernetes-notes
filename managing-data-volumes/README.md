@@ -38,5 +38,16 @@ In a docker container we can consider two types of data we may need to manage:
 ## Command-Line Management of Volumes
 
 ```bash
-docker volumes --help
+Usage:  docker volume COMMAND
+
+Manage volumes
+
+Commands:
+  create      Create a volume
+  inspect     Display detailed information on one or more volumes
+  ls          List volumes
+  prune       Remove unused local volumes
+  rm          Remove one or more volumes
+
+Run 'docker volume COMMAND --help' for more information on a command.
 ```
