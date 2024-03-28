@@ -51,3 +51,20 @@ Commands:
 
 Run 'docker volume COMMAND --help' for more information on a command.
 ```
+
+## Arguments and Environment Variables
+
+Docker supports build-time ARGuments and and runtime ENVironment variables.
+
+Those can be passed in to a Dockerfile or to `docker run` as seen below
+
+**For Example**:
+
+```dockerfile
+ARG arg[=<default_value>]
+ENV KEY=<value> ...
+```
+
+```bash
+docker run --arg value --env KEY=value
+```
