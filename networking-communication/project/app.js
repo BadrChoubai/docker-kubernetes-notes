@@ -62,19 +62,19 @@ app.get('/people', async (req, res) => {
   try {
     const response = await axios.get('https://swapi.dev/api/people');
     res.status(200).json({ people: response.data });
-  } catch (error) {
-    res.status(500).json({ message: 'Something went wrong.' });
+  } catch (error) { res.status(500).json({ message: 'Something went wrong.' });
   }
 });
 
 mongoose.connect(
-  'mongodb://localhost:27017/swfavorites',
+  'mongodb://mongodb:27017/swfavorites',
   { useNewUrlParser: true },
   (err) => {
     if (err) {
       console.log(err);
     } else {
-      app.listen(3000);
+      console.log("mongodb connected");
+      app.listen(3000, () => console.log(`server running on: http://localhost:3000`));
     }
   }
 );
