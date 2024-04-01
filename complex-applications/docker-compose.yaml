@@ -1,6 +1,13 @@
 services:
   # Application
 
+  php:
+    build:
+      context: ./dockerfiles
+      dockerfile: php.dockerfile
+    volumes:
+      - ./src:/var/www/html:delegated
+
   server:
     image: 'nginx:stable-alpine'
     ports:
