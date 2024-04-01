@@ -1,0 +1,36 @@
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - goals-app
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    environment:
+      - PORT=8081
+      - MONGODB_URL=mongodb://mongo:27017/mydatabase
+    networks:
+      - goals-app
+    ports:
+      - "8080:8081"
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    networks:
+      - goals-app
+    volumes:
+      - mongodb_data:/data/db
+
+networks:
+  goals-app:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+

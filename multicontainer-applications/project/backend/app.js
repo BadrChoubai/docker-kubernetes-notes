@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
@@ -15,6 +16,7 @@ const accessLogStream = fs.createWriteStream(
   { flags: 'a' }
 );
 
+app.use(cors());
 app.use(morgan('combined', { stream: accessLogStream }));
 
 app.use(bodyParser.json());
@@ -84,7 +86,7 @@ app.delete('/goals/:id', async (req, res) => {
 });
 
 mongoose.connect(
-  'mongodb://localhost:27017/course-goals',
+  process.env.MONGODB_URL ?? 'mongodb://localhost:27017/mydatabase',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -95,7 +97,14 @@ mongoose.connect(
       console.error(err);
     } else {
       console.log('CONNECTED TO MONGODB');
-      app.listen(80);
+      const PORT = process.env.PORT
+        ? process.env.PORT
+        : 80
+
+      app.listen(
+          PORT, 
+          () => console.log(`Server started on: http://localhost:${PORT}`)
+      );
     }
   }
 );
