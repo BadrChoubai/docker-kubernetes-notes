@@ -13,6 +13,6 @@ RUN npm install
 COPY . /app
 
 # Executes with the starting of our container
-CMD ["node", "app.js"]
+CMD ["npm", "start"]
 
 

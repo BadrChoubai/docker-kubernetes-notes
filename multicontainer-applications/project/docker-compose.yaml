@@ -19,6 +19,11 @@ services:
       - "${NODE_APP_PORT}:${NODE_APP_PORT}"
     depends_on:
       - mongo
+    volumes:
+      - /app/node_modules
+      - ./backend:/app
+      - node_app_data:/app/logs
+
 
   mongo:
     image: mongo
@@ -36,4 +41,5 @@ networks:
 
 volumes:
   mongodb_data:
+  node_app_data:
 
