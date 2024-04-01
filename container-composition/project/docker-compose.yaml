@@ -1,0 +1,52 @@
+services:
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    depends_on:
+      - mongodb
+    env_file:
+      - ./env/backend.env
+    networks:
+      - goals-app
+    ports:
+      - '80:80'
+    volumes:
+      - node_app_logs:/app/logs
+      - ./backend:/app
+      - /app/node_modules
+
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+    networks:
+      - goals-app
+    ports:
+      - '3000:3000'
+    stdin_open: true
+    tty: true
+    volumes:
+      - react_app:/app/src
+
+  mongodb:
+    image: mongo
+    env_file:
+      - ./env/mongo.env
+    networks:
+      - goals-app
+    volumes:
+      - mongodb_data:/data/db
+
+
+networks:
+  goals-app:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+  node_app_logs:
+  react_app:
+
