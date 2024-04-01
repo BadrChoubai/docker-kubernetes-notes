@@ -1,5 +1,13 @@
 # Container Composition
 
+This folder includes project code for the lesson on Docker Compose
+
+## Docker Compose
+
+The Docker ecosystem includes a tool called `docker compose`, which allows you to
+store your entire docker infrastructure into a `docker-compose.yaml` file in order
+to setup multi-container applications more easily.
+
 [Docker Compose Overview](https://docs.docker.com/compose/)
 
 ### Commands
