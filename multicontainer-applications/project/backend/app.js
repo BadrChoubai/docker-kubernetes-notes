@@ -16,6 +16,10 @@ const accessLogStream = fs.createWriteStream(
   { flags: 'a' }
 );
 
+const MONGO_CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING
+    ? process.env.MONGO_CONNECTION_STRING
+    : "mongodb://localhost:27017/mydatabase"
+
 app.use(cors());
 app.use(morgan('combined', { stream: accessLogStream }));
 
@@ -86,7 +90,7 @@ app.delete('/goals/:id', async (req, res) => {
 });
 
 mongoose.connect(
-  process.env.MONGODB_URL ?? 'mongodb://localhost:27017/mydatabase',
+  `${MONGO_CONNECTION_STRING}?authSource=admin`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

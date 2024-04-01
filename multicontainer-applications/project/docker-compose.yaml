@@ -11,7 +11,7 @@ services:
   backend:
     build: ./backend
     environment:
-      - MONGODB_URL=${MONGODB_URL}
+      - MONGO_CONNECTION_STRING=${MONGO_CONNECTION_STRING}
       - PORT=${NODE_APP_PORT}
     networks:
       - goals-app
@@ -22,6 +22,9 @@ services:
 
   mongo:
     image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
     networks:
       - goals-app
     volumes:
