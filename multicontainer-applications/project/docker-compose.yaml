@@ -2,7 +2,7 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "3000:3000"
+      - "${REACT_APP_PORT}:${REACT_APP_PORT}"
     networks:
       - goals-app
     depends_on:
@@ -11,12 +11,12 @@ services:
   backend:
     build: ./backend
     environment:
-      - PORT=8081
-      - MONGODB_URL=mongodb://mongo:27017/mydatabase
+      - MONGODB_URL=${MONGODB_URL}
+      - PORT=${NODE_APP_PORT}
     networks:
       - goals-app
     ports:
-      - "8080:8081"
+      - "${NODE_APP_PORT}:${NODE_APP_PORT}"
     depends_on:
       - mongo
 

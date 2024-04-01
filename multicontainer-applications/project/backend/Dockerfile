@@ -12,8 +12,6 @@ RUN npm install
 # Which files from our machine should go into our image/container
 COPY . /app
 
-EXPOSE 80
-
 # Executes with the starting of our container
 CMD ["node", "app.js"]
 
