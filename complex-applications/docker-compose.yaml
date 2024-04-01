@@ -23,6 +23,14 @@ services:
 
   # Utilities
 
+  artisan:
+    build:
+      context: ./dockerfiles
+      dockerfile: php.dockerfile
+    entrypoint: [ "php", "/var/www/html/artisan" ]
+    volumes:
+      - ./src:/var/www/html
+    
   composer:
     build:
       context: ./dockerfiles
@@ -30,3 +38,9 @@ services:
     volumes:
       - ./src:/var/www/html
     
+  npm:
+    image: node
+    entrypoint: [ "npm" ]
+    working_dir: /var/www/html
+    volumes:
+      - ./src:/var/www/html
