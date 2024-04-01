@@ -1,0 +1,15 @@
+services:
+  # Utilities
+  artisan:
+
+  composer:
+
+  npm:
+
+
+  # Application
+  mysql:
+
+  php:
+
+  server:
