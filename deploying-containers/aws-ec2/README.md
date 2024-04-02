@@ -50,3 +50,30 @@ button, that should bring you to the below screen
 5. Leaving everything as default, ensure that a default VPC has been created and select and
    click on "Launch Instance"
    ![Launched Instance](../../.attachments/EC2%20LaunchedInstance.png "EC2 Launched Instance")
+
+## Connecting to our EC2 Instance (using SSH)
+
+1. On Linux or MacOS, the `ssh` command is available inside of your terminal
+   - On `Windows > 10`, you may setup and use [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install)
+   or download an SSH Client like [PuTTY](https://putty.org/)
+
+2. From the EC2 instances view (Step 5 of the above instructions) select your EC2 that you'd like to connect to.
+3. Click "Connect" and this will bring you to a screen showing several options for connecting to a selected instance.
+4. Click on the "SSH" tab and follow instructions for running the `ssh` command; it should be structured as such:
+    ```bash
+    ssh -i "EC2 .pem FILE PATH" <ec2-instance-dns>
+    ```
+5. You should then be connected via `ssh` to your EC2 instance with an intro screen:
+    ```bash
+       ,     #_
+       ~\_  ####_        Amazon Linux 2023
+      ~~  \_#####\
+      ~~     \###|
+      ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+       ~~       V~' '->
+        ~~~         /
+          ~~._.   _/
+             _/ _/
+           _/m/'
+    [ec2-user@ip-xxx-xx-xx-xxx ~]$ 
+    ```
