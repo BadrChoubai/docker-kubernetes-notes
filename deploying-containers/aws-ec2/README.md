@@ -8,20 +8,12 @@ For our project there are a few steps we need to take:
 2. Configure security group to expose all required ports to WWW
 3. Connect to instance (SSH), install Docker and run our container
 
-## Bind Mounts, Volumes, and Copy
+## Disadvantages of this Approach
 
-- In Development:
-    - Containers should encapsulate the runtime environment but not necessarily
-    the code.
-    - Use "Bind Mounts" to provide our local host project files to the running
-    container
-    - Allows for instant updates without restarting the container
-
-- In Production: [Image/Container is the single-source of truth]
-    - A container should work standalone and should not have source code on the
-    remote machine
-    - Use `COPY` to copy code snapshot into our deployed image
-    - Ensures that every image runs without any extra configuration or code
+1. We fully "own" the remote machine
+    - Keep essential software updated
+    - Manage network, security groups and firewall
+2. SSH works but can be cumbersome if you deploy often
 
 ## Setting Up our EC2 Instance
 
