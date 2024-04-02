@@ -1,3 +1,8 @@
+node_modules
+Dockerfile
+*.pem
 build-image.sh
 start-container.sh
-
+push-image.sh
+.dockerignore
+README.md
