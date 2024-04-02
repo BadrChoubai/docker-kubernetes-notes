@@ -22,3 +22,31 @@ For our project there are a few steps we need to take:
     remote machine
     - Use `COPY` to copy code snapshot into our deployed image
     - Ensures that every image runs without any extra configuration or code
+
+## Setting Up our EC2 Instance
+
+Once you're logged in and registered in AWS, you should be on the AWS Management
+Console. You should be able to search for available resources from there. Search
+for the term EC2:
+
+1. From the Dashboard, use the search bar to query for 'EC2'
+    ![EC2 Search](../../.attachments/EC2%20Search.png "EC2 Search")
+
+2. Select it from the list and that should take you to the EC2 Dashboard
+   ![EC2 Dashboard](../../.attachments/EC2%20Dashboard.png "EC2 Dashbaord")
+ 
+3. From the EC2 Dashboard go to "Launch Instance" panel and click on the "Launch Instance"
+button, that should bring you to the below screen
+  ![Launch Instance](../../.attachments/EC2%20LaunchInstance.png "EC2 Launch Instance")
+
+4. For our use case we will set up our EC2 instance using the Amazon Linux AMI (Amazon Machine Image).
+   - The description of our selected image should match: 
+     `Amazon Linux 2023 AMI 2023.4.20240319.1 x86_64 HVM kernel-6.1`
+   - For the Instance Type, select any Free Tier Eligible option:
+     `t2.micro` is the one I've chosen to select
+   - Recommended: Create a new key-pair, to be used when SSHing into the instance creating it in the console
+   will download a file. You get it once and are not able to download it again.
+
+5. Leaving everything as default, ensure that a default VPC has been created and select and
+   click on "Launch Instance"
+   ![Launched Instance](../../.attachments/EC2%20LaunchedInstance.png "EC2 Launched Instance")
