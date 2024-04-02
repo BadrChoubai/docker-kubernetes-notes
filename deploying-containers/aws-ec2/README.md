@@ -1,6 +1,9 @@
-# AWS EC2 Deployment
+# Amazon Elastic Compute Cloud
 
-AWS EC2 is a service that allows you to spin up and manage your own remote machines
+> Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides resizable computing capacity—literally,
+> servers in Amazon's data centers—that you use to build and host your software systems.
+> 
+> [EC2 Documentation](https://docs.aws.amazon.com/ec2/)
 
 For our project there are a few steps we need to take:
 
