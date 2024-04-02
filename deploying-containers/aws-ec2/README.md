@@ -77,3 +77,25 @@ button, that should bring you to the below screen
            _/m/'
     [ec2-user@ip-xxx-xx-xx-xxx ~]$ 
     ```
+   
+## Installing Docker inside our EC2 Instance
+
+1. To Install Docker onto our EC2 run the following commands:
+    ```bash
+    # ensure that system packages are updated
+    sudo yum update -y
+    sudo yum -y install docker
+
+    sudo service docker start
+
+    sudo usermod -a -G docker ec2-user
+    ```
+   
+2. Log out and log back in, run this command to enable the Docker service
+    ```bash
+    sudo systemctl enable docker
+    ```
+3. Verify that the `docker` command may be run with:
+    ```bash
+    docker --version
+    ```
