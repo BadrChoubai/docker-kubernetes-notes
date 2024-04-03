@@ -8,3 +8,11 @@
 >
 > [ECS Documentation](https://docs.aws.amazon.com/ecs/)
 
+## 
+
+### Cloud Provider Equivalents
+
+Both Microsoft Azure and Google Cloud Platform have equivalent solutions for managed Docker/Kubernetes deployments
+
+- [Azure Kubernetes Service (AKS)](https://azure.microsoft.com/en-us/products/kubernetes-service/)
+- [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine/)
