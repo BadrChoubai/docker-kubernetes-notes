@@ -8,7 +8,12 @@
 >
 > [ECS Documentation](https://docs.aws.amazon.com/ecs/)
 
-## 
+## Setting Up our ECS Instance Using Terraform
+
+- Prerequisites:
+    - Setting up the AWS CLI: [YouTube Video](https://www.youtube.com/watch?v=CjKhQoYeR4Q)
+    - Installing Terraform: [Installation Guide](https://developer.hashicorp.com/terraform/install)
+    - Infrastructure as Code Tutorial: [YouTube Video](https://www.youtube.com/watch?v=cgTPxw2oGI8)
 
 ### Cloud Provider Equivalents
 
