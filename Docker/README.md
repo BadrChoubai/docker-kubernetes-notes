@@ -87,7 +87,6 @@ Additional options for `docker build` include:
 - `-f Dockerfile.custom`: Use a Dockerfile other than the default one in the build context.
     - Example: `docker build -t my-app:1.0 -f Dockerfile.custom .`
 
----
 
 ### 2. `docker run`
 
@@ -121,7 +120,6 @@ Additional useful options:
 - `-e "ENV_VAR=value"`: Passes an environment variable into the container.
     - Example: `docker run -e "ENV=prod" my-image` sets an environment variable `ENV` to `prod` inside the container.
 
----
 
 ### 3. `docker push`
 
@@ -142,7 +140,6 @@ docker push REGISTRY_URL/NAME:TAG
 
 If you're using a private registry, make sure you're logged in using `docker login` before pushing images.
 
----
 
 ### 4. `docker pull`
 
