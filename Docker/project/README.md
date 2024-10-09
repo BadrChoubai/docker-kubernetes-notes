@@ -15,6 +15,6 @@ production on AWS (Amazon Web Services)
 
 This project covers a few deployment approaches:
 
-1. Install Docker on a remote host
-2. Using a managed service: AWS Elastic Container Service
+1. Install Docker on a remote host [aws-ec2](./aws-ec2/README.md)
+2. Using a managed service: [aws-ecs-tf](./aws-ecs-tf/README.md)
 
