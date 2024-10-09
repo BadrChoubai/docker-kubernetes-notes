@@ -8,15 +8,13 @@ production on AWS (Amazon Web Services)
 1. Bind Mounts shouldn't be used in production
 2. Containerized apps might need to include a build step
 3. Multi-Container projects might need to be split across multiple hosts / remote
-machines (regionality)
+   machines (regionality)
 4. Trade-offs between control and responsibility
 
 ## Deployment Process and Solutions
 
-This lesson will cover a few deployment approaches:
+This project covers a few deployment approaches:
 
 1. Install Docker on a remote host
-    - Push and Pull our desrired docker image
-    - Run container based on image on remote host
-
+2. Using a managed service: AWS Elastic Container Service
 

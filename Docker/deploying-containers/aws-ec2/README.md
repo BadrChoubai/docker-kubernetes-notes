@@ -25,14 +25,14 @@ Console. You should be able to search for available resources from there. Search
 for the term EC2:
 
 1. From the Dashboard, use the search bar to query for 'EC2'
-    ![EC2 Search](../../.attachments/EC2/EC2%20Search.png "EC2 Search")
+    ![EC2 Search](../../../.attachments/EC2/EC2%20Search.png "EC2 Search")
 
 2. Select it from the list and that should take you to the EC2 Dashboard
-   ![EC2 Dashboard](../../.attachments/EC2/EC2%20Dashboard.png "EC2 Dashbaord")
+   ![EC2 Dashboard](../../../.attachments/EC2/EC2%20Dashboard.png "EC2 Dashbaord")
  
 3. From the EC2 Dashboard go to "Launch Instance" panel and click on the "Launch Instance"
 button, that should bring you to the below screen
-  ![Launch Instance](../../.attachments/EC2/EC2%20LaunchInstance.png "EC2 Launch Instance")
+  ![Launch Instance](../../../.attachments/EC2/EC2%20LaunchInstance.png "EC2 Launch Instance")
 
 4. For our use case we will set up our EC2 instance using the Amazon Linux AMI (Amazon Machine Image).
    - The description of our selected image should match: 
