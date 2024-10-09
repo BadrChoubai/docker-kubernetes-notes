@@ -28,7 +28,7 @@ for the term EC2:
    ![EC2 Search](../../../.attachments/EC2/EC2%20Search.png "EC2 Search")
 
 2. Select it from the list and that should take you to the EC2 Dashboard
-   ![EC2 Dashboard](../../../.attachments/EC2/EC2%20Dashboard.png "EC2 Dashbaord")
+   ![EC2 Dashboard](../../../.attachments/EC2/EC2%20Dashboard.png "EC2 Dashboard")
 
 3. From the EC2 Dashboard go to "Launch Instance" panel and click on the "Launch Instance"
    button, that should bring you to the below screen
@@ -44,12 +44,12 @@ for the term EC2:
 
 5. Leaving everything as default, ensure that a default VPC has been created and select and
    click on "Launch Instance"
-   ![Launched Instance](../../.attachments/EC2/EC2%20LaunchedInstance.png "EC2 Launched Instance")
+   ![Launched Instance](../../../.attachments/EC2/EC2%20LaunchedInstance.png "EC2 Launched Instance")
 
 ## Connecting to our EC2 Instance (using SSH)
 
-1. On Linux or MacOS, the `ssh` command is available inside of your terminal
-    - On `Windows > 10`, you may setup and
+1. On Linux or macOS, the `ssh` command is available inside your terminal
+    - On `Windows > 10`, you may set up and
       use [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install)
       or download an SSH Client like [PuTTY](https://putty.org/)
 
