@@ -3,4 +3,4 @@
 *.pem
 
 .DS_Store
-Kubernetes/registry
+Kubernetes/registry/data
