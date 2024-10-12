@@ -40,16 +40,13 @@ Direction for installing and setting up `minikube` for Linux can be found here:
 
 [Docker Article](https://www.docker.com/blog/how-to-use-your-own-registry-2/)
 
-Inside of `Kubernetes/registry` the following `docker-compose.yaml` file can be used to create a locally running container registry,
-run `docker compose up` to use for any images we create throughout the lesson:
-
 ```yaml
 # docker-compose.yaml
 version: '3'
 
 services:
   registry:
-    image: registry
+    image: registry:2
     container_name: kubernetes-local-registry
     ports:
       - "5000:5000"

@@ -33,10 +33,8 @@ To get our application deployed inside of Kubernetes, we have to prepare our con
 1. Create and push our container image to a repository:
 
     ```shell
-    pushd app
-    docker build -t kub-first-app .
-    docker tag kub-first-app localhost:5000/kub-first-app:1.0
-    docker push localhost:5000/kub-first-app:1.0
+    pushd app/v1
+    ./build-image.sh
     popd 
     ```
    
@@ -45,7 +43,7 @@ To get our application deployed inside of Kubernetes, we have to prepare our con
    ```shell
    kubectl create deployment \
      node-app-intro \
-     --image=localhost:5000/kub-first-app:1.0
+     --image=kub-first-app:1.0
    ```
    
    > Check the status of pods using `kubectl get pods`
@@ -66,7 +64,8 @@ To expose our application externally, we need to create a **Deployment** object 
    kubectl expose deployment \
      node-app-intro \
      --type=LoadBalancer \
-     --port=8080
+     --port=8080 \
+     --name=node-app-deployment
    ```
 
 - Our service is now exposed and can be verified with:
@@ -93,8 +92,8 @@ To expose our application externally, we need to create a **Deployment** object 
 
 ### Kubernetes in Action
 
-In this section, we'll explore two core capabilities of Kubernetes: its ability to automatically restart a failed
-container and its ability to scale deployments.
+In this section, we'll explore three core capabilities of Kubernetes: its ability to automatically restart a failed
+container, scale deployments, and update deployments seamlessly.
 
 #### Automatic Restarts
 
@@ -130,7 +129,7 @@ Here’s how we can demonstrate this feature using a simple application:
 
 #### Scaling Deployments
 
-Kubernetes also allows you to scale your application easily by increasing the number of running pods, providing high
+Kubernetes allows you to scale your application easily by increasing the number of running pods, providing high
 availability and load distribution.
 
 1. Currently, we have only one pod running in our cluster:
@@ -165,3 +164,68 @@ availability and load distribution.
 
 This demonstrates how Kubernetes maintains the resilience and scalability of your application by automatically
 restarting failed pods and scaling up deployments as needed.
+
+#### Updating Deployments
+
+Kubernetes simplifies rolling out updates to your application with minimal downtime. Using the concept of rolling
+updates, Kubernetes can replace old versions of your application with new ones, one pod at a time, ensuring that the
+application remains available during the update process.
+
+1. Let’s assume we’ve made an update to our application, such as adding a new feature or fixing a bug. The updated
+   container image is pushed to the container registry.
+
+    ```shell
+    pushd app/v2
+    ./build-image.sh
+    popd 
+    ```
+
+2. To update the deployment, you can modify the image version used by your deployment. Run the following command,
+   replacing `NEW_IMAGE_VERSION` with the new image tag:
+
+    ```shell
+    kubectl set image \
+      deployment/node-app-intro \
+      kub-first-app=kub-first-app:2.0
+    ```
+
+3. Kubernetes will begin a rolling update. You can check the progress using:
+
+    ```shell
+    kubectl rollout status deployment/node-app-intro
+    ```
+
+   During the update, Kubernetes replaces the pods one by one, ensuring that some instances of the old version are still
+   running while the new ones are being created. This minimizes downtime and ensures a smooth transition.
+
+4. After the update, check the running pods to confirm that the new version is running:
+
+    ```shell
+    kubectl get pods
+    ```
+
+   You should see the new pods running with the updated version of your application with an added `/health` endpoint.
+
+    ```shell
+    curl http://192.168.49.2:31155/health
+    ```
+
+    ---
+
+   > If anything goes wrong during the update, you can easily roll back to the previous version using:
+   >
+   >    ```shell
+   >   kubectl rollout undo deployment/node-app-intro
+   >   ```
+
+This feature allows for safe, controlled updates and quick rollbacks in case of failure, ensuring continuous delivery of
+changes to your application.
+
+---
+
+**Run these commands to clean up artifacts**:
+
+```shell
+kubectl delete service node-app-deployment
+kubectl delete deployment node-app-intro
+```

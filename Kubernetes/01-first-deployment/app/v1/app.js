@@ -9,12 +9,6 @@ app.get('/', (req, res) => {
   `);
 });
 
-app.get('/health', (req, res) => {
-  res
-      .status(200)
-      .json("Healthy");
-});
-
 app.get('/error', (req, res) => {
   process.exit(1);
 });
