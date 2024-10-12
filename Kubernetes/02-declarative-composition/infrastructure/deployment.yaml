@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: node-app
+  template:
+    metadata:
+      labels:
+        app: node-app
+    spec:
+      containers:
+        - name: node-app-v1
+          image: kub-first-app:1.0
+          livenessProbe:
+            httpGet:
+              path: /health # Endpoint to check for liveness
+              port: 8080
+            initialDelaySeconds: 5 # Delay before the probe starts
+            periodSeconds: 10 # How often to perform the probe
