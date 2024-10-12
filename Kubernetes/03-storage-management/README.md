@@ -1,4 +1,4 @@
-# Managing Application Data in Kubernetes
+# Managing Application Data in Kubernetes: Volumes
 
 You should verify that your cluster is running with the following command before proceeding:
 
@@ -285,7 +285,3 @@ not suitable for portable or replicated data across nodes.
 3. **Node-Dependent Data**: Since `hostPath` volumes are tied to the specific host, the pod rescheduled on a different
    node will have its own host directory. If the application relies on shared data across replicas or nodes, additional
    mechanisms (like a networked file system) are needed to ensure data consistency.
-
-## Persistent Volumes
-
-...
