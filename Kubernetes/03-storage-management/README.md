@@ -6,7 +6,7 @@ You should verify that your cluster is running with the following command before
 minikube status
 ```
 
-You should see output similar to this:
+You should see output similar to this, if not run `minikube start`:
 
 ```text
 minikube
@@ -34,4 +34,40 @@ app
     └── text.txt
 ```
 
-## 
+## Deploy the App to Our Cluster
+
+These instructions are not detailed as we've already covered them in the first two lessons, simply run the below script
+to scaffold the infrastructure for our application. You can view the configuration for our **Deployment** and
+**Service** inside of `/app/deployment.yaml`.
+
+```shell
+( # Build our container image
+  pushd app
+  ./build-image.sh
+  popd
+)
+
+( 
+    pushd app
+    kubectl apply -f deployment.yaml
+    popd
+)
+```
+
+- **Checking our Deployment**:
+
+    ```shell
+    kubectl get deployments
+    ```
+
+    ---
+
+  | NAME                    | READY |
+  |:------------------------|:-----:|
+  | storage-demo-deployment |  1/1  |
+
+- **Opening our Application**:
+
+    ```shell
+    minikube service storage-app-service
+    ```
