@@ -1,23 +1,7 @@
 # Managing Application Data in Kubernetes: Persistent Volumes
 
-You should verify that your cluster is running with the following command before proceeding:
-
-```shell
-minikube status
-```
-
-You should see output similar to this, if not run `minikube start`:
-
-```text
-minikube
-type: Control Plane
-host: Running
-kubelet: Running
-apiserver: Running
-kubeconfig: Configured
-```
-
-[Kubernetes Tools](../TOOLS.md)
+Continuing on from the last lesson, introducing Volumes. This is a quick guide to setting up and using Persistent Volumes
+inside of Kubernetes
 
 ## Persistent Volumes
 
