@@ -1,7 +1,7 @@
 # Managing Application Data in Kubernetes: Persistent Volumes
 
 Continuing on from the last lesson, introducing Volumes. This is a quick guide to setting up and using Persistent Volumes
-inside of Kubernetes
+inside of Kubernetes.
 
 ## Persistent Volumes
 
