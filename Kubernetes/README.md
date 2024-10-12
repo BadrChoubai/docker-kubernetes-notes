@@ -1,27 +1,5 @@
 # Kubernetes
 
-When you're managing a large-scale application with numerous containers, manually handling each of them becomes
-unmanageable due to several factors:
-
-- **Scalability Issues**: Manually spinning up new containers, configuring them, or managing their lifecycles is a
-  complex task when the number of containers grows. This leads to errors like incorrect configuration settings, missing
-  environment variables, and version mismatches.
-
-- **Repetitive Tasks**: Tasks such as updating a container, deploying new versions, or restarting a crashed instance are
-  repetitive. Performing them manually wastes time and increases the chance for human error.
-
-- **Environment Consistency**: Manually deploying containers in different environments (dev, test, prod) can result in
-  inconsistencies due to differences in configuration and dependencies. Ensuring that a container works in different
-  environments without issues is tough to manage without automation.
-
-- **Complex Dependencies**: Modern applications are often made up of microservices, with each microservice running in
-  its own container. Managing inter-service communication, ensuring the proper order of service deployment, and handling
-  dependencies manually is error-prone.
-
-- **Version Management**: Deploying different versions of the same service (e.g. for A/B testing or canary releases)
-  manually requires extra effort to track which version is running where and how the versions interact with other
-  services.
-
 Kubernetes introduces automation to the deployment, scaling, and management of containerized applications, significantly
 reducing the chance of error while improving the overall efficiency of managing large-scale container environments.
 
@@ -29,12 +7,17 @@ The following sections describe some problems with multi-container deployments a
 to overcoming them:
 
 1. [Handling Container Crashes and Replacements](#handling-container-crashes-and-replacements)
-2. [Scaling Application Resources during High-Traffic Usage](#scaling-application-resources-during-high-traffic)
+2. [Scaling Application Resources during High-Traffic Usage](#scaling-application-resources-during-high-traffic-usage)
 3. [Incoming Traffic Should Be Properly Load-Balanced](#incoming-traffic-should-be-properly-load-balanced)
+
+**Core Concepts**:
+
+- [Kubernetes Architecture](./ARCHITECTURE.md)
+- [Kubernetes Objects](./Objects.md)
 
 ---
 
-### Handling Container Crashes and Replacements
+## Handling Container Crashes and Replacements
 
 Containers are lightweight and ephemeral in nature. They can fail due to hardware issues, software bugs, or crashes
 related to external dependencies. If a container crashes or shuts down, manually restarting it can introduce delays and
@@ -59,7 +42,7 @@ Kubernetes solves this problem with self-healing capabilities, specifically:
 
 ---
 
-### Scaling Application Resources During High Traffic Usage
+## Scaling Application Resources During High Traffic Usage
 
 In a dynamic production environment, application usage can fluctuate. For example, during peak hours or promotional
 events, you may need to scale up your application to handle the surge in traffic. Manually scaling your containers in
@@ -86,7 +69,7 @@ Kubernetes offers automated scaling solutions:
 
 ---
 
-### Incoming Traffic Should Be Properly Load-Balanced
+## Incoming Traffic Should Be Properly Load-Balanced
 
 In a multi-container setup, directing traffic to the correct container instances is crucial for performance, redundancy,
 and fault tolerance. Manually managing the distribution of traffic across containers has several challenges:

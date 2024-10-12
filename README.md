@@ -3,10 +3,17 @@
 This project contains source code, artifacts, and written notes created while learning the foundations of Docker and
 Kubernetes.
 
-**Sections**:
+**Detailed Course Notes**:
 
 - [Docker](./Docker/README.md)
 - [Kubernetes](./Kubernetes/README.md)
+
+**Sections**:
+
+1. [Introduction to Docker](#introduction-to-docker)
+2. [Introduction to Kubernetes](#introduction-to-kubernetes)
+
+---
 
 ## Introduction to Docker
 
@@ -65,3 +72,32 @@ from which these containers are created.
       libraries.
     - Docker images can be tagged with versions (e.g., `my-app:1.0`, `my-app:latest`), allowing different versions of
       the same application to be stored and shared.
+
+---
+
+## Introduction to Kubernetes
+
+When you're managing a large-scale application with numerous containers, manually handling each of them becomes
+unmanageable due to several factors:
+
+- **Scalability Issues**: Manually spinning up new containers, configuring them, or managing their lifecycles is a
+  complex task when the number of containers grows. This leads to errors like incorrect configuration settings, missing
+  environment variables, and version mismatches.
+
+- **Repetitive Tasks**: Tasks such as updating a container, deploying new versions, or restarting a crashed instance are
+  repetitive. Performing them manually wastes time and increases the chance for human error.
+
+- **Environment Consistency**: Manually deploying containers in different environments (dev, test, prod) can result in
+  inconsistencies due to differences in configuration and dependencies. Ensuring that a container works in different
+  environments without issues is tough to manage without automation.
+
+- **Complex Dependencies**: Modern applications are often made up of microservices, with each microservice running in
+  its own container. Managing inter-service communication, ensuring the proper order of service deployment, and handling
+  dependencies manually is error-prone.
+
+- **Version Management**: Deploying different versions of the same service (e.g. for A/B testing or canary releases)
+  manually requires extra effort to track which version is running where and how the versions interact with other
+  services.
+
+Kubernetes introduces automation to the deployment, scaling, and management of containerized applications, significantly
+reducing the chance of error while improving the overall efficiency of managing large-scale container environments.
