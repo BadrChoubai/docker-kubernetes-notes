@@ -98,12 +98,46 @@ Our app has two endpoints exposed:
 Because we haven't setup any **Volume** in our Kubernetes cluster, if our application
 crashes we will lose any of the data that a user generates.
 
-Kubernetes has many [types of Volumes](https://kubernetes.io/docs/concepts/storage/volumes/#volume-types) to choose from
-this lesson will focus on three:
+These volume types provide flexibility for managing different kinds of data storage within Kubernetes, depending on use
+cases like temporary storage, access to host files, or integration with third-party storage providers.
 
-- **[emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir)**
-- **[hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath)**
-- **[Container Storage Interface (CSI)](https://kubernetes.io/blog/2019/01/15/container-storage-interface-ga/)**
+1. **[emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir)**
+
+    - An `emptyDir` volume is initially empty when a pod is created, and it lives as long as the pod is running. It is
+      typically used to store temporary data generated during the container's lifecycle. The data in an `emptyDir`
+      volume is deleted if the pod is terminated. This type of volume is useful for scenarios like sharing scratch data
+      between containers in a pod or caching temporary files.
+
+    - **Key points**:
+        - Data is stored on the node’s local storage.
+        - Cleared upon pod termination (but not container restarts).
+        - Used for sharing temporary or intermediate data between containers in the same pod.
+
+2. **[hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath)**
+
+    - A `hostPath` volume mounts a file or directory from the host node's filesystem into a pod. This allows the pod to
+      access or persist data on the underlying node. However, it introduces concerns with data portability and security,
+      since different nodes may have different filesystem structures. It is often used for tasks like logging, exposing the
+      host’s storage for certain privileged applications, or sharing configuration files.
+
+    - **Key points**:
+
+        - Binds a specific host directory or file to a pod.
+        - Can be used to expose host system functionality or share host files.
+        - Limited portability and potential security risks due to tight coupling with host nodes.
+
+3. **[Container Storage Interface (CSI)](https://kubernetes.io/blog/2019/01/15/container-storage-interface-ga/)**
+
+    - The Container Storage Interface (CSI) is a standardized way for Kubernetes to integrate with different storage
+      systems. It allows third-party storage providers to expose their storage systems in a consistent manner. CSI
+      drivers are developed and deployed independently of Kubernetes, which allows for more flexibility and extensibility in
+      managing storage resources like block storage, network-attached storage, or cloud-based solutions.
+
+    - **Key points**:
+
+        - CSI provides a unified interface for storage providers.
+        - Allows external storage systems to be integrated with Kubernetes.
+        - Enables more advanced storage features like dynamic provisioning, snapshots, and cloning.
 
 ## Modifying our Configuration
 
