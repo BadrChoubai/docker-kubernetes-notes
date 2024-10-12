@@ -5,7 +5,7 @@ metadata:
   labels:
     app: storage-demo-app
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: storage-demo-app
@@ -29,7 +29,9 @@ spec:
 
       volumes:
         - name: storage-app-demo-volume
-          emptyDir: {}
+          hostPath:
+            path: /data
+            type: DirectoryOrCreate
 ---
 apiVersion: v1
 kind: Service
