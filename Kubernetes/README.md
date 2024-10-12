@@ -16,6 +16,7 @@ to overcoming them:
 - [Kubernetes Architecture](./ARCHITECTURE.md)
 - [Kubernetes Objects](./Objects.md)
 - [Kubernetes Configuration](./Configuring-Kubernetes.md)
+- [Kubernetes Storage and Data Management](./Storage-and-Data.md)
 
 ---
 
