@@ -228,4 +228,6 @@ changes to your application.
 ```shell
 kubectl delete service node-app-deployment
 kubectl delete deployment node-app-intro
+docker rmi kub-first-app:1.0 
+docker rmi kub-first-app:2.0
 ```
