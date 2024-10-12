@@ -84,28 +84,118 @@ regular volumes, providing a more durable and flexible storage system within a K
 4. **Cross-platform Compatibility**: PVs can be backed by various storage systems, including local storage,
    network-attached storage, or cloud storage solutions, making them highly adaptable to different infrastructures.
 
-## Modifying our Configuration: Creating a Persistent Volume
+### Storage Class
 
-Let's create a volume inside our **Deployment** by modifying our `deployment.yaml` file.
+A **Storage Class** in Kubernetes defines how storage should be provisioned within the cluster. It acts as a blueprint
+that specifies the type of storage, its performance characteristics, and the method of provisioning that should be used
+when a PVC requests storage. Storage Classes are highly flexible, allowing administrators to define multiple classes of
+storage based on workload requirements, cost considerations, and performance needs.
 
-```yaml
-spec:
-  containers:
-    - name: storage-demo-app
-      ...
-      volumeMounts:
-          - mountPath: /app/story
-            name: storage-app-demo-volume
-  volumes:
-    - name: storage-app-demo-volume
-      emptyDir: {}
-```
+**Key Concepts of Storage Classes**:
 
-We've modified our configuration, let's apply the changes:
+- **Provisioner**: The provisioner is a component in Kubernetes that knows how to create storage based on the
+  specifications in the Storage Class. For example, in cloud environments, there are provisioners for AWS EBS, Google
+  Cloud Persistent Disk, and Azure Disk. In on-premises environments, you might use provisioners for NFS, Ceph, or
+  GlusterFS.
+- **Parameters**: Storage Classes can define specific parameters, such as disk type (e.g., SSD or HDD), replication
+  factor, and IOPS (input/output operations per second). These parameters tailor the storage to meet specific
+  performance and durability needs.
+- **Reclaim Policy**: When a PVC is deleted, the associated Persistent Volume can either be retained or deleted,
+  depending on the reclaim policy specified in the Storage Class. This is useful for deciding what happens to data after
+  it’s no longer in use by the application.
+    - **Retain**: The PV is not deleted, allowing manual intervention to retain data.
+    - **Delete**: The PV and the data it contains are automatically deleted when the PVC is deleted.
+- **Binding Mode**: Determines when a PV should be bound to a PVC:
+    - **Immediate Binding**: The PV is bound as soon as the PVC is created.
+    - **WaitForFirstConsumer**: Binding is delayed until a pod using the PVC is scheduled, ensuring that the PV is
+      allocated in the same zone as the pod.
+- **Volume Expansion**: Some Storage Classes support volume expansion, allowing PVCs to request more storage without
+  downtime. This is particularly useful for growing applications, such as databases that may require more space over
+  time.
 
-```shell
-pushd app
-kubectl apply -f deployment.yaml
-popd
-```
+### Benefits of Using Storage Classes:
 
+- **Customization**: Allows you to define multiple storage tiers, such as high-performance SSD-backed storage for
+  critical workloads and cost-effective HDD storage for archival purposes.
+- **Automation**: Enables dynamic provisioning, reducing the manual overhead for cluster administrators and ensuring
+  that storage is allocated automatically based on the application’s needs.
+- **Efficient Resource Allocation**: Delaying volume binding until a pod is scheduled ensures that storage resources are
+  efficiently used, especially in multi-zone or multi-node clusters.
+
+## Introduction to Persistent Volumes
+
+1. Let's create a new file to define our persistent volume: `host-pv.yaml`:
+
+   ```yaml
+   apiVersion: v1
+   kind: PersistentVolume
+   metadata:
+     name: host-pv
+   spec:
+     capacity:
+       storage: 1Gi
+     volumeMode: Filesystem
+     storageClassName: standard
+     accessModes:
+       - ReadWriteOnce
+     hostPath:
+       path: /data
+       type: DirectoryOrCreate
+   ```
+
+   > This defines a Persistent Volume which can now be used by any **Pod** in our Deployment, but we'll
+   > now need to create a **Claim**
+
+2. Let's create a new file to define our **Claim**: `host-pvc.yaml`:
+
+   ```yaml
+   apiVersion: v1
+   kind: PersistentVolumeClaim
+   metadata:
+     name: host-pvc
+   spec:
+     volumeName: host-pv
+     accessModes:
+       - ReadWriteOnce
+     storageClassName: standard
+     resources:
+       requests:
+         storage: 1Gi
+   ```
+
+   > We still haven't configured our connection to a **Pod**
+
+3. Connecting our **Pod** to the **Claim**:
+
+   ```yaml
+   # deployment.yaml
+    spec:
+    containers:
+        - name: storage-demo-app
+          ...
+          volumeMounts:
+            - mountPath: /app/story
+              name: storage-app-demo-volume
+    volumes:
+      - name: storage-app-demo-volume
+        persistentVolumeClaim:
+          claimName: host-pvc 
+   ```
+
+4. After these additions and changes to our configuration, let's apply them:
+
+   ```shell
+   pushd app
+   kubectl apply -f host-pv.yaml
+   kubectl apply -f host-pvc.yaml
+   kubectl apply -f deployment.yaml
+   popd
+   ```
+
+   ---
+
+   Running `kubectl get pv`, you should see a similar output:
+
+   | NAME    | CAPACITY | CLAIM                | STORAGECLASS |
+   |---------|----------|----------------------|--------------|
+   | host-pv | 1Gi      | default/host-pvc     | standard     |
