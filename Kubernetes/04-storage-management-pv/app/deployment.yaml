@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: storage-demo-deployment
+  labels:
+    app: storage-demo-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: storage-demo-app
+  template:
+    metadata:
+      name: storage-demo-app
+      labels:
+        app: storage-demo-app
+    spec:
+      containers:
+        - name: storage-demo-app
+          image: storage-demo-app:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /app/story
+              name: storage-app-demo-volume
+      restartPolicy: Always
+
+      volumes:
+        - name: storage-app-demo-volume
+          hostPath:
+            path: /data
+            type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: storage-app-service
+spec:
+  selector:
+    app: storage-demo-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: LoadBalancer
