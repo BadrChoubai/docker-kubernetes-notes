@@ -1,17 +1,6 @@
 # Intermediate Kubernetes
 
-## Setting Up
-
-To get started with Kubernetes, ensure you have the necessary tooling installed. For this course, we’ll be using
-`kubectl` to interact with the Kubernetes API and a local cluster using `minikube`.
-
-After you’ve installed `kubectl` and `minikube`, start the local cluster by running:
-
-```shell
-minikube start
-```
-
-You can verify that your cluster is running with the following command:
+You should verify that your cluster is running with the following command before proceeding:
 
 ```shell
 minikube status
@@ -28,9 +17,9 @@ apiserver: Running
 kubeconfig: Configured
 ```
 
-## Creating a Deployment
+[Kubernetes Tools](../TOOLS.md)
 
-### Project Structure
+## Project Structure
 
 Inside of this directory we have the same application as before inside the `app` directory, with the inclusion
 of an `infrastructure` directory where a configuration for a **Service** and **Deployment** can be viewed:
@@ -101,6 +90,8 @@ spec:
    kubectl get services
    ```
 
+   ---
+
    You should see output similar to:
 
    | NAME           | TYPE         | CLUSTER-IP   | EXTERNAL-IP |    PORT(S)     |   AGE |
@@ -117,15 +108,22 @@ spec:
 
 ## Updating and Deleting Resources
 
-### Updating Resources
+- **Updating Resources**
+   - If you need to update your Deployment, modify the `deployment.yaml` file and reapply the changes:
 
-If you need to update your Deployment, modify the `deployment.yaml` file and reapply the changes:
+       ```shell
+       kubectl apply -f deployment.yaml
+       ```
 
-```shell
-kubectl apply -f deployment.yaml
-```
+- **Deleting Resources**
+   - To delete your Deployment and Service, use the following commands:
 
-You can also scale your deployment easily. For example, to scale to 3 replicas:
+       ```shell
+       kubectl delete deployment node-app-deployment
+       kubectl delete service backend
+       ```
+
+### Scaling Deployments
 
 1. Update `deployment.yaml:spec.replicas`
 
@@ -140,20 +138,21 @@ You can also scale your deployment easily. For example, to scale to 3 replicas:
    kubectl apply -f deployment.yaml
    ```
 
+3. Verify the changes 
+ 
+   ```shell
+   kubectl get pods
+   ```
+   
+   ---
+   
+   You should see an output similar to this:
+
    | NAME                                 | READY | STATUS  |
    |--------------------------------------|-------|---------|
    | node-app-deployment-6bd546888c-27s6d | 1/1   | Running |
    | node-app-deployment-6bd546888c-8lktc | 1/1   | Running |
    | node-app-deployment-6bd546888c-tksbz | 1/1   | Running |
-
-### Deleting Resources
-
-To delete your Deployment and Service, use the following commands:
-
-```shell
-kubectl delete deployment node-app-deployment
-kubectl delete service backend
-```
 
 ## Understanding Labels and Selectors
 

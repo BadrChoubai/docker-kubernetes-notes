@@ -12,6 +12,7 @@ to overcoming them:
 
 **Core Concepts**:
 
+- [Kubernetes Tools](./TOOLS.md)
 - [Kubernetes Architecture](./ARCHITECTURE.md)
 - [Kubernetes Objects](./Objects.md)
 - [Kubernetes Configuration](./Configuring-Kubernetes.md)

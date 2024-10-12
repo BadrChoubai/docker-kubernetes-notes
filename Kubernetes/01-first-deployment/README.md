@@ -1,22 +1,20 @@
 # Working with Kubernetes
 
-For working with Kubernetes locally, we first need to install the: [Kubernetes Tooling](./TOOLS.md),
+For working with Kubernetes locally, we first need to install the: [Kubernetes Tooling](../TOOLS.md),
 for the course I set up `kubectl` and `minikube`.
-
-After you've installed both `kubectl` and `minikube`, start the cluster locally by running: `minikube start`.
 
 You can verify that it's running with `minikube status`
 
- ```text
- minikube
- type: Control Plane
- host: Running
- kubelet: Running
- apiserver: Running
- kubeconfig: Configured
-  ```
+```text
+minikube
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+```
 
-## Our Project
+## Project Structure
 
 Inside of this directory we have a simple application inside the `app` directory:
 

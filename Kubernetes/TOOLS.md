@@ -2,7 +2,7 @@
 
 For working with Kubernetes locally, we first need to install the Kubernetes
 tools: https://kubernetes.io/docs/tasks/tools/,
-for the course I set up `kubectl` and `minikube`.
+for the course I only set up `kubectl` and `minikube`.
 
 **Jump To:**
 
@@ -12,7 +12,7 @@ for the course I set up `kubectl` and `minikube`.
 
 ## Installing `kubectl`
 
-Direction for installing and setting up `kubectl` for Linux can be found here:
+Directions for installing and setting up `kubectl` for Linux can be found here:
 [https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/).
 
 Alternatively, you may use Snap or Homebrew to install the package as well:
@@ -33,8 +33,21 @@ kubectl version --client
 
 ## Installing `minikube`
 
-Direction for installing and setting up `minikube` for Linux can be found here:
+Directions for installing and setting up `minikube` for Linux can be found here:
 [https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download](https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download)
+
+Once you've got both `kubectl` and `minikube` installed, run the following commands to start and verify that your
+development cluster is running:
+
+```shell
+minikube start
+```
+
+and
+
+```shell
+minikube status
+```
 
 ## Local Container Registry (Optional)
 
