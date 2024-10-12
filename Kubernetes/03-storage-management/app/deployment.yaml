@@ -22,7 +22,14 @@ spec:
           ports:
             - containerPort: 3000
               protocol: TCP
+          volumeMounts:
+            - mountPath: /app/story
+              name: storage-app-demo-volume
       restartPolicy: Always
+
+      volumes:
+        - name: storage-app-demo-volume
+          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
