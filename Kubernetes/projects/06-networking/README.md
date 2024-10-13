@@ -43,8 +43,35 @@ kubectl get services
    1. Deploy each application into our Kubernetes cluster:
 
       - [ ] All APIs running in the same Cluster
-      - [ ] Auth and Users API in same Pod
+      - [x] Auth and Users API in same Pod
       - [ ] Tasks API in own Pod
         
    2. Allow communication between Users API and Auth API
    3. Ensure that only the Users API and Tasks API are accessible by an API Client
+
+### Build and Push Our Container Images
+
+```shell
+eval $(minikube -p minikube docker-env)
+
+(
+  pushd users-api || exit
+  docker build -t cc-users-api:1.0 .
+  popd || exit
+)
+  
+(
+  pushd auth-api || exit
+  docker build -t cc-auth-api:1.0 .
+  popd || exit
+)
+```
+   
+### Deploy Our Users App to the Cluster
+
+```shell
+pushd infrastructure/users
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+popd
+```
