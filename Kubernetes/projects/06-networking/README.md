@@ -17,6 +17,13 @@ apiserver: Running
 kubeconfig: Configured
 ```
 
+Also, double-check that no existing resources exist except for the default `Kubernetes: ClusterIP`:
+
+```shell
+kubectl get deployments
+kubectl get services
+```
+
 [Kubernetes Tools](../TOOLS.md)
 
 ## Our Application
@@ -33,6 +40,11 @@ kubeconfig: Configured
 
 3. Our Goals:
 
-    1. Deploy each application into our Kubernetes cluster
-    2. Establish the correct Networking infrastructure so that only the `Users` API and `Tasks` API
-       are accessible from an API Client
+   1. Deploy each application into our Kubernetes cluster:
+
+      - [ ] All APIs running in the same Cluster
+      - [ ] Auth and Users API in same Pod
+      - [ ] Tasks API in own Pod
+        
+   2. Allow communication between Users API and Auth API
+   3. Ensure that only the Users API and Tasks API are accessible by an API Client
