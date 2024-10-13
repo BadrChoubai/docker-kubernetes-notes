@@ -18,13 +18,19 @@ spec:
       containers:
         - name: storage-demo-app
           image: storage-demo-app:1.0
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
               protocol: TCP
           volumeMounts:
             - mountPath: /app/story
               name: storage-app-demo-volume
+          env:
+            - name: STORY_FOLDER
+              valueFrom:
+                configMapKeyRef:
+                  name: data-store-env
+                  key: folder
       restartPolicy: Always
 
       volumes:
