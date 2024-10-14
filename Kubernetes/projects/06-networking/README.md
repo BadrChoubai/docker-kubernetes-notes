@@ -62,6 +62,12 @@ eval $(minikube -p minikube docker-env)
   docker build -t cc-auth-api:1.0 .
   popd || exit
 )
+  
+(
+  pushd tasks-api || exit
+  docker build -t cc-tasks-api:1.0 .
+  popd || exit
+)
 ```
    
 ### Deploy Our Users App to the Cluster
@@ -91,6 +97,29 @@ kubectl apply -f service.yaml
 popd
 ```
 
+## Deploying our Last API
+
+To deploy the Tasks API into our cluster we need to include a Config Map, Persistent Volume, and a Persistent Volume
+Claim
+
+
+```shell
+pushd infrastructure/tasks
+kubectl apply -f config-map.yaml
+kubectl apply -f host-pv.yaml
+kubectl apply -f host-pvc.yaml
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+popd
+
+```
+
+![Dashboard All API Deployments](../../../.attachments/Dashboard-all-deployments.png)
+
+---
+
+#### Teardown
+
 ```shell
 pushd infrastructure/users
 kubectl delete -f deployment.yaml
@@ -100,5 +129,13 @@ popd
 pushd infrastructure/auth
 kubectl delete -f deployment.yaml
 kubectl delete -f service.yaml
+popd
+
+pushd infrastructure/tasks
+kubectl delete -f service.yaml
+kubectl delete -f deployment.yaml
+kubectl delete -f host-pv.yaml
+kubectl delete -f host-pvc.yaml
+kubectl delete -f config-map.yaml
 popd
 ```

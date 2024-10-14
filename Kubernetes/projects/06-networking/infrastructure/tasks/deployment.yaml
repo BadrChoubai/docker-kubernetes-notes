@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tasks-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tasks-app
+  template:
+    metadata:
+      name: tasks-app
+      labels:
+        app: tasks-app
+    spec:
+      containers:
+        - name: tasks-app-container
+          image: cc-tasks-api:1.0
+          ports:
+            - containerPort: 8000
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /app/tasks
+              name: tasks-app-volume
+          env:
+            - name: TASKS_FOLDER
+              valueFrom:
+                configMapKeyRef:
+                  name: data-storage-env
+                  key: folder
+            - name: AUTH_API_URL
+              value: "auth-service.default"
+      restartPolicy: Always
+
+      volumes:
+        - name: tasks-app-volume
+          persistentVolumeClaim:
+            claimName: host-pvc
