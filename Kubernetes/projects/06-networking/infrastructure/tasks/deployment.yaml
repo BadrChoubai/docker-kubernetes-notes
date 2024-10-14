@@ -19,20 +19,9 @@ spec:
           ports:
             - containerPort: 8000
               protocol: TCP
-          volumeMounts:
-            - mountPath: /app/tasks
-              name: tasks-app-volume
           env:
             - name: TASKS_FOLDER
-              valueFrom:
-                configMapKeyRef:
-                  name: data-storage-env
-                  key: folder
+              value: tasks
             - name: AUTH_API_URL
               value: "auth-service.default"
       restartPolicy: Always
-
-      volumes:
-        - name: tasks-app-volume
-          persistentVolumeClaim:
-            claimName: host-pvc

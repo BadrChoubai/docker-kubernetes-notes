@@ -110,9 +110,6 @@ Claim
 
 ```shell
 pushd infrastructure/tasks
-kubectl apply -f config-map.yaml
-kubectl apply -f host-pv.yaml
-kubectl apply -f host-pvc.yaml
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 popd
@@ -140,6 +137,30 @@ minikube service frontend-service
 
 ---
 
+#### Set Up
+
+```shell
+pushd infrastructure/users
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+popd
+
+pushd infrastructure/auth
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+popd
+
+pushd infrastructure/tasks
+kubectl apply -f service.yaml
+kubectl apply -f deployment.yaml
+popd
+
+pushd infrastructure/frontend
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+popd
+```
+
 #### Teardown
 
 ```shell
@@ -154,11 +175,8 @@ kubectl delete -f service.yaml
 popd
 
 pushd infrastructure/tasks
-kubectl delete -f service.yaml
 kubectl delete -f deployment.yaml
-kubectl delete -f host-pvc.yaml
-kubectl delete -f host-pv.yaml
-kubectl delete -f config-map.yaml
+kubectl delete -f service.yaml
 popd
 
 pushd infrastructure/frontend
