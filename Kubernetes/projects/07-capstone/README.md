@@ -42,4 +42,3 @@ the ecosystem that Terraform developed over the nine years leading up to the cha
 > snap install --classic opentofu 
 > ```
 
-
