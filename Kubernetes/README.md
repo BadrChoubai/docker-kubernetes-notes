@@ -19,6 +19,15 @@ to overcoming them:
 - [Kubernetes Storage and Data Management](./Storage-and-Data.md)
 - [Kubernetes Networking](./Networking.md)
 
+**Hands-On Projects**:
+
+- [Working with Kubernetes](./projects/01-first-deployment/README.md)
+- [Intermediate Kubernetes](./projects/02-declarative-composition/README.md)
+- [Storage Management](./projects/03-storage-management/README.md)
+  - [Storage Management: Using Persistent Volumes](./projects/04-storage-management-pv/README.md)
+  - [Storage Management: Extras](./projects/05-storage-management-ext/README.md)
+- [Networking](./projects/06-networking/README.md)
+
 ---
 
 ## Handling Container Crashes and Replacements

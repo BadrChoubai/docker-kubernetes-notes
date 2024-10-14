@@ -6,8 +6,6 @@ You should verify that your cluster is running with the following command before
 minikube status
 ```
 
-You should see output similar to this, if not run `minikube start`:
-
 ```text
 minikube
 type: Control Plane
@@ -30,13 +28,13 @@ kubectl get services
 
 1. **Multiple APIs**: We are working with three different APIs which we would like to be able to establish connections
    inside our Kubernetes Cluster:
-    - **User API**: This API is takes an incoming request to create a new user
-    - **Auth API**: This API creates an authentication token for a new user
-    - **Tasks API**: This API enables the creating and reading of tasks for a given user
+    - **User API**: This API is takes a dummy request to create a new user
+    - **Auth API**: This API creates a dummy authentication token for a new user
+    - **Tasks API**: This API enables the creating and reading of tasks for a dummy user
 
-2. **Beginning Architecture**:
+2. **Goal Architecture**:
 
-   ![App Architecture Diagram](../../../.attachments/Network-project-diagram.png)
+   ![App Architecture Diagram](../../../.attachments/2nd-Network-project-diagram.png)
 
 3. Our Goals:
 
@@ -46,80 +44,12 @@ kubectl get services
       2. Tasks API and Auth API
    3. Ensure that only the Users API and Tasks API are accessible by an outside connection
 
-### Build and Push Our Container Images
-
-```shell
-eval $(minikube -p minikube docker-env)
-
-(
-  pushd users-api || exit
-  docker build -t cc-users-api:1.0 .
-  popd || exit
-)
-  
-(
-  pushd auth-api || exit
-  docker build -t cc-auth-api:1.0 .
-  popd || exit
-)
-  
-(
-  pushd tasks-api || exit
-  docker build -t cc-tasks-api:1.0 .
-  popd || exit
-)
-  
-(
-  pushd frontend || exit
-  docker build -t tasks-app-client:1.0 .
-  popd || exit
-)
-```
-   
-### Deploy Our Users App to the Cluster
-
-```shell
-pushd infrastructure/users
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
-popd
-```
-
-## Evolving the Architecture
-
-**Goal Architecture**:
-
-   ![App Architecture Diagram](../../../.attachments/2nd-Network-project-diagram.png)
-
-```shell
-pushd infrastructure/users
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
-popd
-
-pushd infrastructure/auth
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
-popd
-```
-
-## Deploying our Last API
-
-To deploy the Tasks API into our cluster we need to include a Config Map, Persistent Volume, and a Persistent Volume
-Claim
-
-```shell
-pushd infrastructure/tasks
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
-popd
-```
-
-![Dashboard All API Deployments](../../../.attachments/Dashboard-all-deployments.png)
+> Scripts for repeated tasks: [Task Scripts](#task-scripts)
 
 ## Putting it All Together
 
-For the final piece we'll be adding a front-end application, built in React to interact with our backend APIs.
+At the end of the hands-on we set up a small React application in our cluster to interact with the tasks API. Running the
+script below will create the resources in our cluster:
 
 ```shell
 pushd infrastructure/frontend
@@ -127,6 +57,8 @@ kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 popd
 ```
+
+Once that's done, view the application in your browser:
 
 ```shell
 minikube service frontend-service
@@ -134,53 +66,77 @@ minikube service frontend-service
 
 ![Frontend](../../../.attachments/Frontend-Preview.png)
 
+---
+
+### Task Scripts
+
+**Scripts**:
+
+- [Build Our Container Images](#build-our-container-images)
+- [Build Kubernetes Resources (except frontend)](#build-kubernetes-resources-except-frontend)
+- [Destroy Resources (except frontend)](#destroy-kubernetes-resources)
 
 ---
 
-#### Set Up
+#### Build Our Container Images
 
 ```shell
-pushd infrastructure/users
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
-popd
+eval $(minikube -p minikube docker-env)
 
-pushd infrastructure/auth
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
-popd
+# Array of services and their respective Docker image names
+services=(
+  "users-api:cc-users-api:1.0"
+  "auth-api:cc-auth-api:1.0"
+  "tasks-api:cc-tasks-api:1.0"
+  "frontend:tasks-app-client:1.0"
+)
 
-pushd infrastructure/tasks
-kubectl apply -f service.yaml
-kubectl apply -f deployment.yaml
-popd
-
-pushd infrastructure/frontend
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
-popd
+# Loop through each service and build the Docker image
+for service in "${services[@]}"; do
+  IFS=":" read -r dir image tag <<< "$service"
+  (
+    pushd "$dir" || exit
+    docker build -t "$image:$tag" .
+    popd || exit
+  )
+done
 ```
 
-#### Teardown
+#### Build Kubernetes Resources (except frontend)
 
 ```shell
-pushd infrastructure/users
-kubectl delete -f deployment.yaml
-kubectl delete -f service.yaml
-popd
+services=(
+  "infrastructure/users"
+  "infrastructure/auth"
+  "infrastructure/tasks"
+)
 
-pushd infrastructure/auth
-kubectl delete -f deployment.yaml
-kubectl delete -f service.yaml
-popd
+for service in "${services[@]}"; do
+  (
+    pushd "$service" || exit
+    kubectl apply -f deployment.yaml
+    kubectl apply -f service.yaml
+    popd || exit
+  )
+done
+```
 
-pushd infrastructure/tasks
-kubectl delete -f deployment.yaml
-kubectl delete -f service.yaml
-popd
+#### Destroy Kubernetes Resources
 
-pushd infrastructure/frontend
-kubectl delete -f deployment.yaml
-kubectl delete -f service.yaml
-popd
+```shell
+services=(
+  "infrastructure/users"
+  "infrastructure/auth"
+  "infrastructure/tasks"
+  "infrastructure/frontend"
+)
+
+for service in "${services[@]}"; do
+  (
+    pushd "$service" || exit
+    kubectl delete -f deployment.yaml
+    kubectl delete -f service.yaml
+    popd || exit
+  )
+done
 ```
