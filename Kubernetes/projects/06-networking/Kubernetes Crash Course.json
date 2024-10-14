@@ -1,0 +1,70 @@
+{
+  "name": "Kubernetes Crash Course",
+  "version": "1",
+  "items": [
+    {
+      "type": "folder",
+      "name": "Users API",
+      "items": [
+        {
+          "type": "http",
+          "name": "Signup",
+          "seq": 1,
+          "request": {
+            "url": "http://192.168.49.2:32563/signup",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"email\": \"test@test.com\",\n  \"password\": \"hackmeidareyou\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Login",
+          "seq": 2,
+          "request": {
+            "url": "http://192.168.49.2:32563/login",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"email\": \"test@test.com\",\n  \"password\": \"hackmeidareyou\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "environments": [],
+  "brunoConfig": {
+    "version": "1",
+    "name": "Kubernetes Crash Course",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ]
+  }
+}

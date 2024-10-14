@@ -75,3 +75,21 @@ kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 popd
 ```
+
+## Evolving the Architecture
+
+**Goal Architecture**:
+
+   ![App Architecture Diagram](../../../.attachments/2nd-Network-project-diagram.png)
+
+```shell
+pushd infrastructure/users
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+popd
+
+pushd infrastructure/auth
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+popd
+```

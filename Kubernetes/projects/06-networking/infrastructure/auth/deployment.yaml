@@ -1,26 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: users-app-deployment
+  name: auth-app-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: users-app
+      app: auth-app
   template:
     metadata:
-      name: users-app
+      name: auth-app
       labels:
-        app: users-app
+        app: auth-app
     spec:
       containers:
-        - name: users-app-container
-          image: cc-users-api:1.0
+        - name: auth-app-container
+          image: cc-auth-api:1.0
           imagePullPolicy: Never
           ports:
             - containerPort: 80
               protocol: TCP
-          env:
-            - name: AUTH_API_URL
-              value: localhost
       restartPolicy: Always
