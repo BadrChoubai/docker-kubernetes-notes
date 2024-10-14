@@ -184,7 +184,7 @@ offer better portability and management options.
 
 - **Bind Mounts**: Ideal for **development** when you need a live connection between your local files and the container,
   allowing immediate reflection of file changes.
-- **Volumes**: Preferred in **production** environments for **data persistence**, as Docker manages their lifecycle and
+- **Volumes**: Preferred in **production** environments for **data persistence**, as Docker manages their lifecycle, and
   they are more portable and easier to back up.
 
 ### Networking
@@ -279,7 +279,7 @@ linking services.
     - **Starts the services**: All containers (services) defined in the YAML file will be started together. Docker
       Compose also ensures the correct startup order of services (for instance, the `web` service may depend on the `db`
       service being up first).
-    - Example: Running `docker compose up` in the example file would start the web app and PostgreSQL database in
+    - Example: Running `docker compose up` in the example file would start the web app and Postgres database in
       separate containers, with the web app automatically linked to the database.
 
    Additional options:
@@ -358,7 +358,7 @@ consistent development experience.
 - **No dependency or software clashes**: Because Docker containers are isolated from each other and the host system, you
   don’t need to worry about version mismatches or conflicting dependencies between different projects. All necessary
   dependencies are bundled within the container, ensuring that your local environment remains clean and consistent.
-    - Example: Instead of installing Node.js or PostgreSQL globally, Docker containers can include those dependencies,
+    - Example: Instead of installing Node.js or Postgres globally, Docker containers can include those dependencies,
       ensuring that each project gets the correct versions without affecting your system.
 
 - **Faster onboarding and setup**: Using Docker in local development makes it easy for new team members to get started.

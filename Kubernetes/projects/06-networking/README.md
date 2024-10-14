@@ -22,7 +22,7 @@ kubectl get deployments
 kubectl get services
 ```
 
-[Kubernetes Tools](../TOOLS.md)
+[Kubernetes Tools](../../TOOLS.md)
 
 ## Our Application
 

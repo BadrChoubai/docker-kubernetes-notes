@@ -17,7 +17,7 @@ apiserver: Running
 kubeconfig: Configured
 ```
 
-[Kubernetes Tools](../TOOLS.md)
+[Kubernetes Tools](../../TOOLS.md)
 
 ## Project Structure
 

@@ -6,7 +6,7 @@ operational efficiency.
 
 ## Imperative Approach
 
-[Project](./01-first-deployment/README.md)
+[Project](./projects/01-first-deployment/README.md)
 
 The imperative approach focuses on executing individual commands to directly manage resources within the Kubernetes
 cluster. This method is straightforward and immediate, allowing users to create, update, or delete resources by issuing
@@ -32,7 +32,7 @@ invoked, which can become tedious and error-prone as the number of resources gro
 
 ## Declarative Approach
 
-[Project](./02-declarative-composition/README.md)
+[Project](./projects/02-declarative-composition/README.md)
 
 In contrast, the declarative approach emphasizes defining the desired state of the system in configuration files.
 Instead of executing individual commands, users write YAML or JSON files that describe the desired state of Kubernetes

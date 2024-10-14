@@ -1,6 +1,6 @@
 # Working with Kubernetes
 
-For working with Kubernetes locally, we first need to install the: [Kubernetes Tooling](../TOOLS.md),
+For working with Kubernetes locally, we first need to install the: [Kubernetes Tooling](../../TOOLS.md),
 for the course I set up `kubectl` and `minikube`.
 
 You can verify that it's running with `minikube status`
@@ -13,6 +13,18 @@ kubelet: Running
 apiserver: Running
 kubeconfig: Configured
 ```
+
+### Working Alongside Kubernetes
+
+When working on a project involving Kubernetes keep in mind what you need to set up and manage and how it will
+work alongside your efforts:
+
+| **What You Need To Do**                                                                        | **What Kubernetes Will Do**                                                          |
+|------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| Create the Cluster and the Node Instances (Worker + Master Nodes)                              | Create your objects (e.g. Pods) and manage them                                      |
+| Setup API Server, kubelet and other Kubernetes services/software on Nodes                      | Monitor Pods and re-create them, scale Pods, etc.                                    |
+| Create other (cloud) provider resources that might be needed (e.g. Load Balancer, Filesystems) | Kubernetes utilizes the provided (cloud) resources to apply your configuration/goals |
+
 
 ## Project Structure
 
@@ -48,13 +60,13 @@ To get our application deployed inside of Kubernetes, we have to prepare our con
 
 3. Start the Kubernetes dashboard by running: `minikube dashboard`
 
-   ![Kubernetes Dashboard](../../.attachments/Kubernetes-Dashboard.png)
+   ![Kubernetes Dashboard](../../../.attachments/Kubernetes-Dashboard.png)
 
 ### Exposing our Application
 
 To expose our application externally, we need to create a **Deployment** object in our Kubernetes cluster.
 
-[Objects: Deployment](../Objects.md#Deployment)
+[Objects: Deployment](../../Objects.md#deployment)
 
 - Using `kubectl`, we can expose our application:
 
@@ -86,7 +98,7 @@ To expose our application externally, we need to create a **Deployment** object 
 
   ---
 
-  ![Application Running in Browser](../../.attachments/Application-running-in-browser.png)
+  ![Application Running in Browser](../../../.attachments/Application-running-in-browser.png)
 
 ### Kubernetes in Action
 
@@ -118,10 +130,10 @@ Here’s how we can demonstrate this feature using a simple application:
    automatically restart the container. You can observe this by running the `kubectl get pods` command, which will show
    something like the following:
 
-   | NAME                           | READY |      STATUS      | RESTARTS        |
+   | NAME                           | READY |      STATUS      |    RESTARTS     |
    |:-------------------------------|:-----:|:----------------:|:---------------:|
-   | node-app-intro-59bbb9498-cw96t |  0/1  |      Error       | 4 (4m40s ago)   |
-   | node-app-intro-59bbb9498-cw96t |  1/1  |     Running      | 5 (103s ago)    |
+   | node-app-intro-59bbb9498-cw96t |  0/1  |      Error       |  4 (4m40s ago)  |
+   | node-app-intro-59bbb9498-cw96t |  1/1  |     Running      |  5 (103s ago)   |
 
 4. As seen above, Kubernetes successfully restarted the container after the crash.
 

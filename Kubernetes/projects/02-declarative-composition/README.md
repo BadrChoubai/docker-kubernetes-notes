@@ -17,7 +17,7 @@ apiserver: Running
 kubeconfig: Configured
 ```
 
-[Kubernetes Tools](../TOOLS.md)
+[Kubernetes Tools](../../TOOLS.md)
 
 ## Project Structure
 
@@ -96,7 +96,7 @@ spec:
 
    | NAME           | TYPE         | CLUSTER-IP   | EXTERNAL-IP |    PORT(S)     |   AGE |
    |:---------------|:-------------|:-------------|:-----------:|:--------------:|------:|
-   | backend        | LoadBalancer | 10.99.23.244 | `<pending>` | 80:31155/TCP   |   63s |
+   | backend        | LoadBalancer | 10.99.23.244 | `<pending>` |  80:31155/TCP  |   63s |
 
 3. To access the application, run:
 
