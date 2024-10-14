@@ -22,5 +22,5 @@ spec:
               protocol: TCP
           env:
             - name: AUTH_API_URL
-              value: localhost
+              value: "auth-service.default"
       restartPolicy: Always

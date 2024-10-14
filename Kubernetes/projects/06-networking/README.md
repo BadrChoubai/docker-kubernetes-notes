@@ -41,13 +41,10 @@ kubectl get services
 3. Our Goals:
 
    1. Deploy each application into our Kubernetes cluster:
-
-      - [ ] All APIs running in the same Cluster
-      - [x] Auth and Users API in same Pod
-      - [ ] Tasks API in own Pod
-        
-   2. Allow communication between Users API and Auth API
-   3. Ensure that only the Users API and Tasks API are accessible by an API Client
+   2. Allow communication between: 
+      1. Users API and Auth API 
+      2. Tasks API and Auth API
+   3. Ensure that only the Users API and Tasks API are accessible by an outside connection
 
 ### Build and Push Our Container Images
 
@@ -91,5 +88,17 @@ popd
 pushd infrastructure/auth
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
+popd
+```
+
+```shell
+pushd infrastructure/users
+kubectl delete -f deployment.yaml
+kubectl delete -f service.yaml
+popd
+
+pushd infrastructure/auth
+kubectl delete -f deployment.yaml
+kubectl delete -f service.yaml
 popd
 ```
