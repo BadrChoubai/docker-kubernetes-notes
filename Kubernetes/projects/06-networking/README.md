@@ -68,6 +68,12 @@ eval $(minikube -p minikube docker-env)
   docker build -t cc-tasks-api:1.0 .
   popd || exit
 )
+  
+(
+  pushd frontend || exit
+  docker build -t tasks-app-client:1.0 .
+  popd || exit
+)
 ```
    
 ### Deploy Our Users App to the Cluster
@@ -102,7 +108,6 @@ popd
 To deploy the Tasks API into our cluster we need to include a Config Map, Persistent Volume, and a Persistent Volume
 Claim
 
-
 ```shell
 pushd infrastructure/tasks
 kubectl apply -f config-map.yaml
@@ -111,10 +116,27 @@ kubectl apply -f host-pvc.yaml
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 popd
-
 ```
 
 ![Dashboard All API Deployments](../../../.attachments/Dashboard-all-deployments.png)
+
+## Putting it All Together
+
+For the final piece we'll be adding a front-end application, built in React to interact with our backend APIs.
+
+```shell
+pushd infrastructure/frontend
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+popd
+```
+
+```shell
+minikube service frontend-service
+```
+
+![Frontend](../../../.attachments/Frontend-Preview.png)
+
 
 ---
 
@@ -134,8 +156,13 @@ popd
 pushd infrastructure/tasks
 kubectl delete -f service.yaml
 kubectl delete -f deployment.yaml
-kubectl delete -f host-pv.yaml
 kubectl delete -f host-pvc.yaml
+kubectl delete -f host-pv.yaml
 kubectl delete -f config-map.yaml
+popd
+
+pushd infrastructure/frontend
+kubectl delete -f deployment.yaml
+kubectl delete -f service.yaml
 popd
 ```
