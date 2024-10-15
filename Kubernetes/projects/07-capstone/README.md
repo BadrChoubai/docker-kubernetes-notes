@@ -26,6 +26,26 @@ For myself, I wanted to add two stretch goals:
 1. Build the applications in a different programming language (Go)
 2. Use an infrastructure-as-code tool to manage resources deployed to AWS (OpenTofu)
 
+### Prerequisites for `services` Project
+
+- [Docker](https://www.docker.com/get-started) installed and running
+- Go installed on your local machine (if not using Docker exclusively)
+- A configured Docker registry where images will be pushed
+
+The project uses a `Makefile` to build Go binaries inside of `services/cmd/` and create Docker images for different platforms. The Makefile
+automates the process of building and packaging your applications into containers, making it easier to manage
+dependencies and deployment.
+
+[`services` README](./project/services/README.md)
+
+### Prerequisites for `infrastructure` Project
+
+- [OpenTofu](https://opentofu.org/docs/intro/install/) installed and connected to cloud provider
+
+[`infrastructure` README](./project/infrastructure/README.md)
+
+--- 
+
 ### OpenTofu
 
 OpenTofu is an open-source fork of Terraform managed by the Linux Foundation. From
@@ -42,20 +62,3 @@ the ecosystem that Terraform developed over the nine years leading up to the cha
 > snap install --classic opentofu 
 > ```
 
-## Prerequisites for `services` Project
-
-- [Docker](https://www.docker.com/get-started) installed and running
-- Go installed on your local machine (if not using Docker exclusively)
-- A configured Docker registry where images will be pushed
-
-The project uses a `Makefile` to build Go binaries inside of `services/cmd/` and create Docker images for different platforms. The Makefile
-automates the process of building and packaging your applications into containers, making it easier to manage
-dependencies and deployment.
-
-[`services` README](./project/services/README.md)
-
-## Prerequisites for `infrastructure` Project
-
-- [OpenTofu](https://opentofu.org/docs/intro/install/) installed and connected to cloud provider
-
-[`infrastructure` README](./project/infrastructure/README.md)
