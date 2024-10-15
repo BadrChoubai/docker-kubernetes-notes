@@ -52,6 +52,10 @@ The project uses a `Makefile` to build Go binaries inside of `services/cmd/` and
 automates the process of building and packaging your applications into containers, making it easier to manage
 dependencies and deployment.
 
+[`services` README](./project/services/README.md)
+
 ## Prerequisites for `infrastructure` Project
 
 - [OpenTofu](https://opentofu.org/docs/intro/install/) installed and connected to cloud provider
+
+[`infrastructure` README](./project/infrastructure/README.md)
