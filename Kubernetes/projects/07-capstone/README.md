@@ -24,7 +24,7 @@ Services).
 For myself, I wanted to add two stretch goals:
 
 1. Build the applications in a different programming language (Go)
-2. Use an infrastructure-as-code tool to manage resources deployed to AWS (OpenTofu)
+2. Use an infrastructure-as-code tool to manage resources deployed to AWS ([OpenTofu](#opentofu))
 
 ### Prerequisites for `services` Project
 
