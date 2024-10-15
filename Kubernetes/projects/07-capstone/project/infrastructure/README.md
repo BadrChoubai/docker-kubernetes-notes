@@ -25,7 +25,7 @@ project.
 │   └── root
 │       ├── config.mk               # Configuration variables for Makefile
 │       └── Makefile                # Core Makefile for infrastructure tasks
-├── main.tofu                       # Main Terraform configuration file
+├── main.tofu                       # Main infrastructure configuration file
 ├── Makefile -> ./build/root/Makefile # Symlink to core Makefile
 ├── modules
 │   ├── ecr
