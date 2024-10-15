@@ -56,7 +56,7 @@ Public License) to a non-open source license.
 The maintainers of OpenTofu and its users believe that the license change ultimately harms the open-source community and
 the ecosystem that Terraform developed over the nine years leading up to the change.
 
-> **Install OpenTofu on Ubuntu using `snap`**
+> Install OpenTofu on Ubuntu using `snap`:
 >
 > ```shell
 > snap install --classic opentofu 
