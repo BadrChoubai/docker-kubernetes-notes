@@ -42,3 +42,16 @@ the ecosystem that Terraform developed over the nine years leading up to the cha
 > snap install --classic opentofu 
 > ```
 
+## Prerequisites for `services` Project
+
+- [Docker](https://www.docker.com/get-started) installed and running
+- Go installed on your local machine (if not using Docker exclusively)
+- A configured Docker registry where images will be pushed
+
+The project uses a `Makefile` to build Go binaries inside of `services/cmd/` and create Docker images for different platforms. The Makefile
+automates the process of building and packaging your applications into containers, making it easier to manage
+dependencies and deployment.
+
+## Prerequisites for `infrastructure` Project
+
+- [OpenTofu](https://opentofu.org/docs/intro/install/) installed and connected to cloud provider
