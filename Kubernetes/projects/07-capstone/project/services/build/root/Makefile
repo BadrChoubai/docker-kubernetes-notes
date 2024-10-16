@@ -77,6 +77,10 @@ push: image
 	done
 	echo
 
+lint: # HELP runs golangci-lint linters
+lint:
+	golangci-lint run
+
 SHELL := /usr/bin/env bash -o errexit -o pipefail
 .DEFAULT_GOAL = all
 .PHONY: all clean

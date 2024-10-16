@@ -1,0 +1,32 @@
+run:
+  concurrency: 4
+  timeout: 5m
+
+linters-settings:
+  decorder:
+    dec-order:
+      - type
+      - const
+      - var
+      - func
+  gci:
+    sections:
+      - default
+      - prefix(github.com/badrchoubai)
+    skip-generated: true
+    custom-order: true
+  gocritic:
+    enabled-tags:
+      - diagnostic
+      - opinionated
+      - performance
+      - style
+
+linters:
+  disable-all: true
+  enable:
+    - decorder
+    - gci
+    - gocritic
+    - gosec
+    - revive
