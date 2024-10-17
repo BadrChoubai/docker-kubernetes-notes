@@ -4,6 +4,8 @@ BINS ?= users auth
 IMAGE_DOTFILES = $(foreach bin,$(BINS),.image-$(bin)-$(TAG))
 
 BUILD_DIRS := .dist/$(OS)_$(ARCH)	\
+			  .images				\
+			  .dockerfile			\
               .go/cache            	\
               .go/pkg
 
@@ -40,10 +42,7 @@ $(BUILD_DIRS):
 
 clean: # @HELP clean artifacts from build
 clean:
-	rm -rf bin
-	rm -rf .go .dist
-	rm .dockerfile-*
-	rm .image-*
+	rm -rf .go .dist .images .dockerfile
 
 image images: # Builds container images
 image images: $(IMAGE_DOTFILES)
@@ -61,13 +60,13 @@ image images: $(IMAGE_DOTFILES)
 		-e 's|{ARG_ARCH}|$(ARCH)|g'                \
 		-e 's|{ARG_OS}|$(OS)|g'                    \
 		-e 's|{ARG_FROM}|$(CONTAINER_IMAGE)|g'     \
-		./build/Dockerfile.in > .dockerfile-$(BIN)-$(OS)_$(ARCH)
+		./build/Dockerfile.in > ./.dockerfile/.dockerfile-$(BIN)-$(OS)_$(ARCH)
 	docker build \
 		--progress=plain \
 		-t $(REGISTRY)/$(BIN):$(TAG) \
-	    -f .dockerfile-$(BIN)-$(OS)_$(ARCH) \
+	    -f ./.dockerfile/.dockerfile-$(BIN)-$(OS)_$(ARCH) \
 		.
-	docker images -q $(REGISTRY)/$(BIN):$(TAG) > $@
+	docker images -q $(REGISTRY)/$(BIN):$(TAG) > ./.images/$@
 	echo
 
 push: # @HELP pushes the image for one platform ($OS/$ARCH) to the defined registry

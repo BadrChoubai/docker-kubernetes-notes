@@ -28,7 +28,7 @@ func run(ctx context.Context) error {
 		}
 	}()
 
-	infoLog.Print("http://0.0.0.0:8080/health")
+	infoLog.Printf("https://%s", srv.Addr())
 
 	if serveError != nil {
 		return serveError

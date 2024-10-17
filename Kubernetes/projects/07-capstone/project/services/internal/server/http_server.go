@@ -11,6 +11,7 @@ import (
 
 type (
 	Server interface {
+		Addr() string
 		Serve() error
 		Shutdown(ctx context.Context) error
 	}
@@ -20,6 +21,10 @@ type (
 		httpServer *http.Server
 	}
 )
+
+func (s *server) Addr() string {
+	return s.httpServer.Addr
+}
 
 func (s *server) Shutdown(ctx context.Context) error {
 	return s.httpServer.Shutdown(ctx)

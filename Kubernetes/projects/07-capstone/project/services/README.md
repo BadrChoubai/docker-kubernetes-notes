@@ -66,5 +66,5 @@ make clean
 - **Generated Files and Directories**:
    - `.dist/`: Output directory for compiled binaries.
    - `.go/`: Caching directory for Go modules and builds.
-   - `.dockerfile-`: Dynamically generated Dockerfile for building specific binaries.
-   - `.image-`: Marker file indicating successful build of a Docker image for a binary.
+   - `.dockerfile/`: Output directory for dynamically generated Dockerfile for building specific binaries.
+   - `.image/`: Output directory for marker file indicating successful build of a Docker image for a binary.
