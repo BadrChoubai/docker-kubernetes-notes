@@ -1,8 +1,0 @@
-FROM {ARG_FROM}
-
-# Add the platform-specific binary.
-COPY .dist/{ARG_OS}_{ARG_ARCH}/{ARG_BIN} /{ARG_BIN}
-
-EXPOSE 8080
-
-ENTRYPOINT ["/{ARG_BIN}"]

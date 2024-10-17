@@ -1,5 +1,7 @@
 # Capstone Project: AWS Elastic Kubernetes Service
 
+> The project source code is in a separate repository: [CC-Capstone](https://www.github.com/badrchoubai/cc-capstone)
+
 For the capstone project in the course, we focused on moving away from our local development environment (`minikube`) and start to learn
 about the workflow, deployment options, etc. involved in deploying software to a production cloud environment: AWS (Amazon Web
 Services).
