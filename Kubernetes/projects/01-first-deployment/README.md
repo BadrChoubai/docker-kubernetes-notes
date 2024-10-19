@@ -1,4 +1,4 @@
-# Working with Kubernetes
+# Getting Started with Kubernetes
 
 For working with Kubernetes locally, we first need to install the: [Kubernetes Tooling](../../TOOLS.md),
 for the course I set up `kubectl` and `minikube`.
@@ -16,7 +16,7 @@ kubeconfig: Configured
 
 ### Working Alongside Kubernetes
 
-When working on a project involving Kubernetes keep in mind what you need to set up and manage and how it will
+When working on a project involving Kubernetes, keep in mind what you need to set up and manage and how it will
 work alongside your efforts:
 
 | **What You Need To Do**                                                                        | **What Kubernetes Will Do**                                                          |
