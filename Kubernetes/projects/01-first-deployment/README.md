@@ -44,7 +44,7 @@ To get our application deployed inside of Kubernetes, we have to prepare our con
 
     ```shell
     pushd app/v1
-    ./build-image.sh
+    docker build -t kub-first-app:1.0 .
     popd 
     ```
    
@@ -186,7 +186,7 @@ application remains available during the update process.
 
     ```shell
     pushd app/v2
-    ./build-image.sh
+    docker build -t kub-first-app:2.0 .
     popd 
     ```
 
