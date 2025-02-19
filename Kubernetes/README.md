@@ -28,10 +28,6 @@ to overcoming them:
   - [Storage Management: Extras](./projects/05-storage-management-ext/README.md)
 - [Networking](./projects/06-networking/README.md)
 
-**Capstone Project**:
-
-- [Production Deployment: AWS Elastic Kubernetes Service](./projects/07-capstone/README.md)
-
 ---
 
 ## Handling Container Crashes and Replacements
