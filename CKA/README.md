@@ -2,7 +2,7 @@
 
 These are my study notes I took in preparing for the Certified Kubernetes Administrator
 Exam. To study, I was given a copy of the book by Chad M. Crowell: _Acing the Certified Kubernetes
-Administrator Exam_, by a good friend of mine.
+Administrator Exam_, by a good friend of mine and wanted to make notes of what I read.
 
 ## How the Exam Is Structured
 
@@ -31,6 +31,8 @@ Kubernetes is a piece of software that you interact with via a REST API. It's im
 that Resources (a term used here to address objects inside of a cluster) can be managed through
 the API exposed by it.
 
-## Cluster Architecture, Installation, and Configuration
+## Cluster Architecture
 
 ![Architecture Diagram](../.attachments/kubernetes-architecture-diagram.svg)
+
+> [Read more about Kubernetes Architecture](../Kubernetes/ARCHITECTURE.md)
