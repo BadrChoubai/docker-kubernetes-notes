@@ -28,9 +28,10 @@ kubectl get services
 
 1. **Multiple APIs**: We are working with three different APIs which we would like to be able to establish connections
    inside our Kubernetes Cluster:
-    - **User API**: This API is takes a dummy request to create a new user
-    - **Auth API**: This API creates a dummy authentication token for a new user
-    - **Tasks API**: This API enables the creating and reading of tasks for a dummy user
+
+   - **User API**: This API is takes a dummy request to create a new user
+   - **Auth API**: This API creates a dummy authentication token for a new user
+   - **Tasks API**: This API enables the creating and reading of tasks for a dummy user
 
 2. **Goal Architecture**:
 
@@ -39,8 +40,8 @@ kubectl get services
 3. Our Goals:
 
    1. Deploy each application into our Kubernetes cluster:
-   2. Allow communication between: 
-      1. Users API and Auth API 
+   2. Allow communication between:
+      1. Users API and Auth API
       2. Tasks API and Auth API
    3. Ensure that only the Users API and Tasks API are accessible by an outside connection
 

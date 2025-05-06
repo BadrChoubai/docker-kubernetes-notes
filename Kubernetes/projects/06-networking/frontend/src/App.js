@@ -1,17 +1,17 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from "react";
 
-import './App.css';
-import TaskList from './components/TaskList';
-import NewTask from './components/NewTask';
+import "./App.css";
+import TaskList from "./components/TaskList";
+import NewTask from "./components/NewTask";
 
 function App() {
   const [tasks, setTasks] = useState([]);
 
   const fetchTasks = useCallback(function () {
-    fetch('/api/tasks', {
+    fetch("/api/tasks", {
       headers: {
-        'Authorization': 'Bearer abc'
-      }
+        Authorization: "Bearer abc",
+      },
     })
       .then(function (response) {
         return response.json();
@@ -25,15 +25,15 @@ function App() {
     function () {
       fetchTasks();
     },
-    [fetchTasks]
+    [fetchTasks],
   );
 
   function addTaskHandler(task) {
-    fetch('/api/tasks', {
-      method: 'POST',
+    fetch("/api/tasks", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer abc',
+        "Content-Type": "application/json",
+        Authorization: "Bearer abc",
       },
       body: JSON.stringify(task),
     })
@@ -47,7 +47,7 @@ function App() {
   }
 
   return (
-    <div className='App'>
+    <div className="App">
       <section>
         <NewTask onAddTask={addTaskHandler} />
       </section>

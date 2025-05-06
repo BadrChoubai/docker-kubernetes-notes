@@ -3,7 +3,7 @@
 Kubernetes introduces automation to the deployment, scaling, and management of containerized applications, significantly
 reducing the chance of error while improving the overall efficiency of managing large-scale container environments.
 
-The following sections describe some problems with multi-container deployments and the solution provided by Kubernetes 
+The following sections describe some problems with multi-container deployments and the solution provided by Kubernetes
 to overcoming them:
 
 1. [Handling Container Crashes and Replacements](#handling-container-crashes-and-replacements)
@@ -103,10 +103,11 @@ Kubernetes introduces a built-in **service** resource and various load-balancing
   for manual intervention.
 
 - **Load Balancers**: Kubernetes supports different types of load balancers:
-    - **ClusterIP**: The default type, which routes traffic within the cluster to the right pods.
-    - **NodePort**: Exposes the service on each node's IP, allowing external traffic to reach the service.
-    - **External Load Balancer**: In cloud environments (e.g. AWS, GCP), Kubernetes can automatically provision
-      external load balancers to distribute traffic to the service across multiple nodes.
+
+  - **ClusterIP**: The default type, which routes traffic within the cluster to the right pods.
+  - **NodePort**: Exposes the service on each node's IP, allowing external traffic to reach the service.
+  - **External Load Balancer**: In cloud environments (e.g. AWS, GCP), Kubernetes can automatically provision
+    external load balancers to distribute traffic to the service across multiple nodes.
 
 - **Ingress Controllers**: Kubernetes also supports Ingress resources, which manage external access to the cluster
   (e.g. HTTP/S traffic). An ingress controller handles routing rules and SSL termination, providing more advanced

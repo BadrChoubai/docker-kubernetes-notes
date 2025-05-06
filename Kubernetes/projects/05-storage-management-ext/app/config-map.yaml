@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: data-storage-env
 data:
-  folder: 'story'
+  folder: "story"

@@ -15,16 +15,16 @@ This document outlines the architecture of Kubernetes:
   own hardware resources, such as CPU, memory, storage, and networking capabilities, which are allocated to the
   workloads it runs. Nodes are categorized into:
 
-    - **Master Node**: The Master Node (Control Plane) is responsible for managing the overall state of the cluster. It
-      coordinates scheduling, scaling, health monitoring, and updates. It runs several key components like the **API
-      Server**, **Scheduler**, **Controller Manager**, and **etcd**. Master nodes ensure that the desired state of the
-      cluster (as declared in manifests) is maintained.
+  - **Master Node**: The Master Node (Control Plane) is responsible for managing the overall state of the cluster. It
+    coordinates scheduling, scaling, health monitoring, and updates. It runs several key components like the **API
+    Server**, **Scheduler**, **Controller Manager**, and **etcd**. Master nodes ensure that the desired state of the
+    cluster (as declared in manifests) is maintained.
 
-    - **Worker Node**: A Worker Node is where the application workloads actually run, in the form of Pods. It interacts
-      with the Master Node to receive instructions about running, stopping, or updating applications. Each worker node
-      includes essential services such as the **kubelet**, which communicates with the Master Node, and the **kube-proxy
-      **, which manages network rules for exposing services. The node runs containers in Pods and manages resource
-      allocation for them.
+  - **Worker Node**: A Worker Node is where the application workloads actually run, in the form of Pods. It interacts
+    with the Master Node to receive instructions about running, stopping, or updating applications. Each worker node
+    includes essential services such as the **kubelet**, which communicates with the Master Node, and the **kube-proxy
+    **, which manages network rules for exposing services. The node runs containers in Pods and manages resource
+    allocation for them.
 
 - **Pods**: A Pod is the smallest and most basic deployable unit in Kubernetes. It represents one or more tightly
   coupled containers that share the same network namespace, storage, and other resources. Each Pod has its own IP
@@ -43,11 +43,11 @@ This document outlines the architecture of Kubernetes:
   distributed. They also make it easier to manage networking between microservices, as Pods can dynamically scale up or
   down without affecting the service's ability to route traffic.
 
-    - **Kubernetes supports different types of services**:
-        - **ClusterIP**: Exposes the service only within the cluster.
-        - **NodePort**: Exposes the service on a static port on each node’s IP.
-        - **LoadBalancer**: Exposes the service externally using a cloud provider’s load balancer.
-        - **ExternalName**: Maps the service to a DNS name (external to the cluster).
+  - **Kubernetes supports different types of services**:
+    - **ClusterIP**: Exposes the service only within the cluster.
+    - **NodePort**: Exposes the service on a static port on each node’s IP.
+    - **LoadBalancer**: Exposes the service externally using a cloud provider’s load balancer.
+    - **ExternalName**: Maps the service to a DNS name (external to the cluster).
 
 ## Control Plane
 

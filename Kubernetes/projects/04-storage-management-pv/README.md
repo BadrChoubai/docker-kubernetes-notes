@@ -47,11 +47,11 @@ regular volumes, providing a more durable and flexible storage system within a K
   node in the cluster can access the data stored in the PV, depending on the underlying storage backend (e.g., networked
   storage, cloud block storage). This solves the issue of data availability in multi-node environments.
 - **Dynamic and Static Provisioning**: Kubernetes offers two ways to manage persistent storage:
-    - **Static Provisioning**: In this model, a cluster administrator manually provisions PVs, which are then claimed by
-      pods via **Persistent Volume Claims (PVCs)**.
-    - **Dynamic Provisioning**: Kubernetes can dynamically create PVs on-demand when a PVC is requested by a pod. This
-      eliminates the need for cluster admins to pre-provision volumes and allows for more flexibility, especially in
-      cloud environments with elastic storage backends.
+  - **Static Provisioning**: In this model, a cluster administrator manually provisions PVs, which are then claimed by
+    pods via **Persistent Volume Claims (PVCs)**.
+  - **Dynamic Provisioning**: Kubernetes can dynamically create PVs on-demand when a PVC is requested by a pod. This
+    eliminates the need for cluster admins to pre-provision volumes and allows for more flexibility, especially in
+    cloud environments with elastic storage backends.
 - **Storage Classes and Flexibility**: PVs can be configured with **Storage Classes**, which define the type and
   characteristics of storage (e.g., SSDs, HDDs, network-attached storage) that can be dynamically provisioned. Storage
   classes allow Kubernetes to integrate with various storage backends, such as AWS EBS, GCE Persistent Disks, NFS, or
@@ -87,12 +87,12 @@ storage based on workload requirements, cost considerations, and performance nee
 - **Reclaim Policy**: When a PVC is deleted, the associated Persistent Volume can either be retained or deleted,
   depending on the reclaim policy specified in the Storage Class. This is useful for deciding what happens to data after
   it’s no longer in use by the application.
-    - **Retain**: The PV is not deleted, allowing manual intervention to retain data.
-    - **Delete**: The PV and the data it contains are automatically deleted when the PVC is deleted.
+  - **Retain**: The PV is not deleted, allowing manual intervention to retain data.
+  - **Delete**: The PV and the data it contains are automatically deleted when the PVC is deleted.
 - **Binding Mode**: Determines when a PV should be bound to a PVC:
-    - **Immediate Binding**: The PV is bound as soon as the PVC is created.
-    - **WaitForFirstConsumer**: Binding is delayed until a pod using the PVC is scheduled, ensuring that the PV is
-      allocated in the same zone as the pod.
+  - **Immediate Binding**: The PV is bound as soon as the PVC is created.
+  - **WaitForFirstConsumer**: Binding is delayed until a pod using the PVC is scheduled, ensuring that the PV is
+    allocated in the same zone as the pod.
 - **Volume Expansion**: Some Storage Classes support volume expansion, allowing PVCs to request more storage without
   downtime. This is particularly useful for growing applications, such as databases that may require more space over
   time.
@@ -163,7 +163,7 @@ storage based on workload requirements, cost considerations, and performance nee
     volumes:
       - name: storage-app-demo-volume
         persistentVolumeClaim:
-          claimName: host-pvc 
+          claimName: host-pvc
    ```
 
 4. After these additions and changes to our configuration, let's apply them:
@@ -176,10 +176,10 @@ storage based on workload requirements, cost considerations, and performance nee
    popd
    ```
 
-   ---
+   ***
 
    Running `kubectl get pv`, you should see a similar output:
 
-   | NAME    | CAPACITY | CLAIM                | STORAGECLASS |
-   |---------|----------|----------------------|--------------|
-   | host-pv | 1Gi      | default/host-pvc     | standard     |
+   | NAME    | CAPACITY | CLAIM            | STORAGECLASS |
+   | ------- | -------- | ---------------- | ------------ |
+   | host-pv | 1Gi      | default/host-pvc | standard     |

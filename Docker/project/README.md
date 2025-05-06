@@ -17,19 +17,19 @@ responsibilities:
 - **Complete control**: By setting up and managing your own server (e.g., using a cloud service like AWS EC2, Google
   Compute Engine, or a physical server), you have complete control over how Docker is installed, configured, and run.
 
-   - You can configure resource limits, optimize performance, set up security policies, and manage networking exactly
-     how you need.
+  - You can configure resource limits, optimize performance, set up security policies, and manage networking exactly
+    how you need.
 
-   - You’re responsible for **monitoring**, **scaling**, and **maintaining** the server, including managing security
-     updates, backups, and system monitoring.
+  - You’re responsible for **monitoring**, **scaling**, and **maintaining** the server, including managing security
+    updates, backups, and system monitoring.
 
-   - **Greater flexibility**: You can configure the server for special requirements, such as custom networking or
-     firewall rules, that may not be available in a managed service.
+  - **Greater flexibility**: You can configure the server for special requirements, such as custom networking or
+    firewall rules, that may not be available in a managed service.
 
   However, this approach requires a deeper understanding of system administration and can be time-consuming to manage at
   scale.
 
-   - Example: Running a **self-hosted Docker Swarm** or **Kubernetes cluster** on your own servers.
+  - Example: Running a **self-hosted Docker Swarm** or **Kubernetes cluster** on your own servers.
 
 ### 2. Using a Managed Service
 
@@ -42,21 +42,21 @@ want to focus more on application development than on managing servers.
   **provisioning**, **scaling**, and **monitoring** of Docker containers. This reduces the need for deep operational
   knowledge.
 
-   - **Automatic scaling**: These platforms automatically scale your application as traffic increases and ensure that
-     containers are balanced across multiple hosts.
+  - **Automatic scaling**: These platforms automatically scale your application as traffic increases and ensure that
+    containers are balanced across multiple hosts.
 
-   - **Built-in monitoring and logging**: Managed services provide monitoring tools to track the health of your
-     containers and alert you to any issues. Many platforms offer integrations with monitoring and logging services,
-     such as **AWS CloudWatch**, **Google Cloud Monitoring**, or **Datadog**.
+  - **Built-in monitoring and logging**: Managed services provide monitoring tools to track the health of your
+    containers and alert you to any issues. Many platforms offer integrations with monitoring and logging services,
+    such as **AWS CloudWatch**, **Google Cloud Monitoring**, or **Datadog**.
 
-   - **Simplified networking**: These platforms automatically handle networking and load balancing between your
-     containers and services.
+  - **Simplified networking**: These platforms automatically handle networking and load balancing between your
+    containers and services.
 
-   - **Security updates and patches**: Managed services take care of security updates for the underlying
-     infrastructure, reducing the burden of managing server vulnerabilities.
+  - **Security updates and patches**: Managed services take care of security updates for the underlying
+    infrastructure, reducing the burden of managing server vulnerabilities.
 
   The trade-off here is that you may have less flexibility in certain configurations, and you're relying on a
   third-party provider for availability and control over the underlying infrastructure.
 
-   - Example: Deploying a **containerized web app** on AWS ECS, which handles resource scaling, security updates, and
-     load balancing automatically.
+  - Example: Deploying a **containerized web app** on AWS ECS, which handles resource scaling, security updates, and
+    load balancing automatically.

@@ -14,8 +14,8 @@ For our project there are a few steps we need to take:
 ## Disadvantages of this Approach
 
 1. We fully "own" the remote machine
-    - Keep essential software updated
-    - Manage network, security groups and firewall
+   - Keep essential software updated
+   - Manage network, security groups and firewall
 2. SSH works but can be cumbersome if you deploy often
 
 ## Setting Up our EC2 Instance
@@ -35,12 +35,13 @@ for the term EC2:
    ![Launch Instance](../../../.attachments/EC2/EC2%20LaunchInstance.png "EC2 Launch Instance")
 
 4. For our use case we will set up our EC2 instance using the Amazon Linux AMI (Amazon Machine Image).
-    - The description of our selected image should match:
-      `Amazon Linux 2023 AMI 2023.4.20240319.1 x86_64 HVM kernel-6.1`
-    - For the Instance Type, select any Free Tier Eligible option:
-      `t2.micro` is the one I've chosen to select
-    - Recommended: Create a new key-pair, to be used when SSHing into the instance creating it in the console
-      will download a file. You get it once and are not able to download it again.
+
+   - The description of our selected image should match:
+     `Amazon Linux 2023 AMI 2023.4.20240319.1 x86_64 HVM kernel-6.1`
+   - For the Instance Type, select any Free Tier Eligible option:
+     `t2.micro` is the one I've chosen to select
+   - Recommended: Create a new key-pair, to be used when SSHing into the instance creating it in the console
+     will download a file. You get it once and are not able to download it again.
 
 5. Leaving everything as default, ensure that a default VPC has been created and select and
    click on "Launch Instance"
@@ -49,50 +50,51 @@ for the term EC2:
 ## Connecting to our EC2 Instance (using SSH)
 
 1. On Linux or macOS, the `ssh` command is available inside your terminal
-    - On `Windows > 10`, you may set up and
-      use [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install)
-      or download an SSH Client like [PuTTY](https://putty.org/)
+
+   - On `Windows > 10`, you may set up and
+     use [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install)
+     or download an SSH Client like [PuTTY](https://putty.org/)
 
 2. From the EC2 instances view (Step 5 of the above instructions) select your EC2 that you'd like to connect to.
 3. Click "Connect" and this will bring you to a screen showing several options for connecting to a selected instance.
 4. Click on the "SSH" tab and follow instructions for running the `ssh` command; it should be structured as such:
-    ```bash
-    ssh -i "EC2 .pem FILE PATH" <ec2-instance-dns>
-    ```
+   ```bash
+   ssh -i "EC2 .pem FILE PATH" <ec2-instance-dns>
+   ```
 5. You should then be connected via `ssh` to your EC2 instance with an intro screen:
-    ```bash
-       ,     #_
-       ~\_  ####_        Amazon Linux 2023
-      ~~  \_#####\
-      ~~     \###|
-      ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
-       ~~       V~' '->
-        ~~~         /
-          ~~._.   _/
-             _/ _/
-           _/m/'
-    [ec2-user@ip-xxx-xx-xx-xxx ~]$ 
-    ```
+   ```bash
+      ,     #_
+      ~\_  ####_        Amazon Linux 2023
+     ~~  \_#####\
+     ~~     \###|
+     ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+      ~~       V~' '->
+       ~~~         /
+         ~~._.   _/
+            _/ _/
+          _/m/'
+   [ec2-user@ip-xxx-xx-xx-xxx ~]$
+   ```
 
 ## Installing Docker inside our EC2 Instance
 
 1. To Install Docker onto our EC2 run the following commands:
-    ```bash
-    # ensure that system packages are updated
-    sudo yum update -y
-    sudo yum -y install docker
 
-    sudo service docker start
+   ```bash
+   # ensure that system packages are updated
+   sudo yum update -y
+   sudo yum -y install docker
 
-    sudo usermod -a -G docker ec2-user
-    ```
+   sudo service docker start
+
+   sudo usermod -a -G docker ec2-user
+   ```
 
 2. Log out and log back in, run this command to enable the Docker service
-    ```bash
-    sudo systemctl enable docker
-    ```
+   ```bash
+   sudo systemctl enable docker
+   ```
 3. Verify that the `docker` command may be run with:
-    ```bash
-    docker --version
-    ```
-
+   ```bash
+   docker --version
+   ```

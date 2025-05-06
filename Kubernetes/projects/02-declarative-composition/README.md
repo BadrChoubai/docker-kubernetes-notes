@@ -65,15 +65,15 @@ our Service:
 apiVersion: v1
 kind: Service
 metadata:
-   name: backend # Name of the service.
+  name: backend # Name of the service.
 spec:
-   selector:
-      app: node-app # Selects Pods with the label "app: node-app".
-   ports:
-      - protocol: TCP # Protocol for the service.
-        port: 80 # Port exposed by the service.
-        targetPort: 8080 # Port on the Pod that the service forwards to.
-   type: LoadBalancer # Exposes the service externally.
+  selector:
+    app: node-app # Selects Pods with the label "app: node-app".
+  ports:
+    - protocol: TCP # Protocol for the service.
+      port: 80 # Port exposed by the service.
+      targetPort: 8080 # Port on the Pod that the service forwards to.
+  type: LoadBalancer # Exposes the service externally.
 ```
 
 1. Create the Service with `kubectl`:
@@ -90,13 +90,13 @@ spec:
    kubectl get services
    ```
 
-   ---
+   ***
 
    You should see output similar to:
 
-   | NAME           | TYPE         | CLUSTER-IP   | EXTERNAL-IP |    PORT(S)     |   AGE |
-   |:---------------|:-------------|:-------------|:-----------:|:--------------:|------:|
-   | backend        | LoadBalancer | 10.99.23.244 | `<pending>` |  80:31155/TCP  |   63s |
+   | NAME    | TYPE         | CLUSTER-IP   | EXTERNAL-IP |   PORT(S)    | AGE |
+   | :------ | :----------- | :----------- | :---------: | :----------: | --: |
+   | backend | LoadBalancer | 10.99.23.244 | `<pending>` | 80:31155/TCP | 63s |
 
 3. To access the application, run:
 
@@ -109,19 +109,21 @@ spec:
 ## Updating and Deleting Resources
 
 - **Updating Resources**
-   - If you need to update your Deployment, modify the `deployment.yaml` file and reapply the changes:
 
-       ```shell
-       kubectl apply -f deployment.yaml
-       ```
+  - If you need to update your Deployment, modify the `deployment.yaml` file and reapply the changes:
+
+    ```shell
+    kubectl apply -f deployment.yaml
+    ```
 
 - **Deleting Resources**
-   - To delete your Deployment and Service, use the following commands:
 
-       ```shell
-       kubectl delete deployment node-app-deployment
-       kubectl delete service backend
-       ```
+  - To delete your Deployment and Service, use the following commands:
+
+    ```shell
+    kubectl delete deployment node-app-deployment
+    kubectl delete service backend
+    ```
 
 ### Scaling Deployments
 
@@ -129,7 +131,7 @@ spec:
 
    ```yaml
    spec:
-      replicas: 3
+     replicas: 3
    ```
 
 2. Run the same `kubectl` command as earlier:
@@ -138,18 +140,18 @@ spec:
    kubectl apply -f deployment.yaml
    ```
 
-3. Verify the changes 
- 
+3. Verify the changes
+
    ```shell
    kubectl get pods
    ```
-   
-   ---
-   
+
+   ***
+
    You should see an output similar to this:
 
    | NAME                                 | READY | STATUS  |
-   |--------------------------------------|-------|---------|
+   | ------------------------------------ | ----- | ------- |
    | node-app-deployment-6bd546888c-27s6d | 1/1   | Running |
    | node-app-deployment-6bd546888c-8lktc | 1/1   | Running |
    | node-app-deployment-6bd546888c-tksbz | 1/1   | Running |
@@ -164,10 +166,10 @@ You can define labels in your Deployment and Service configuration to facilitate
 
 ```yaml
 selector:
-   matchLabels:
-      app: node-app # Matches Pods with this label.
-   matchExpressions:
-      - { key: key, operator: In, values: [ first, second ] } # More complex matching criteria.
+  matchLabels:
+    app: node-app # Matches Pods with this label.
+  matchExpressions:
+    - { key: key, operator: In, values: [first, second] } # More complex matching criteria.
 ```
 
 ### Practical Example

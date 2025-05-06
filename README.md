@@ -42,9 +42,9 @@ from which these containers are created.
 - **Stateless**: Containers are designed to be **stateless**, meaning they don’t persist any data by default once they
   stop running. To manage persistent data (such as databases or user uploads), you need to use **volumes** or **bind
   mounts** to store data outside the container.
-    - Example: If a container running a database stops, the data will be lost unless a volume is used to persist it.
-    - Stateless containers are easier to scale, as new instances can be spun up without needing to worry about state
-      synchronization.
+  - Example: If a container running a database stops, the data will be lost unless a volume is used to persist it.
+  - Stateless containers are easier to scale, as new instances can be spun up without needing to worry about state
+    synchronization.
 
 ### 2. Images
 
@@ -68,10 +68,10 @@ from which these containers are created.
   defines the instructions for assembling the image, such as installing dependencies, copying files, and setting up the
   environment. Once built, images can be shared through a **Docker registry** (like Docker Hub or a private registry),
   allowing other users or systems to pull the image and create containers from it.
-    - Example: An image of a Python web app might include the Python runtime, the app’s code, and the necessary
-      libraries.
-    - Docker images can be tagged with versions (e.g., `my-app:1.0`, `my-app:latest`), allowing different versions of
-      the same application to be stored and shared.
+  - Example: An image of a Python web app might include the Python runtime, the app’s code, and the necessary
+    libraries.
+  - Docker images can be tagged with versions (e.g., `my-app:1.0`, `my-app:latest`), allowing different versions of
+    the same application to be stored and shared.
 
 ---
 

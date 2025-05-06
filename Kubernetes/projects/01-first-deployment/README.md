@@ -20,11 +20,10 @@ When working on a project involving Kubernetes, keep in mind what you need to se
 work alongside your efforts:
 
 | **What You Need To Do**                                                                        | **What Kubernetes Will Do**                                                          |
-|------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
 | Create the Cluster and the Node Instances (Worker + Master Nodes)                              | Create your objects (e.g. Pods) and manage them                                      |
 | Setup API Server, kubelet and other Kubernetes services/software on Nodes                      | Monitor Pods and re-create them, scale Pods, etc.                                    |
 | Create other (cloud) provider resources that might be needed (e.g. Load Balancer, Filesystems) | Kubernetes utilizes the provided (cloud) resources to apply your configuration/goals |
-
 
 ## Project Structure
 
@@ -42,12 +41,12 @@ To get our application deployed inside of Kubernetes, we have to prepare our con
 
 1. Create and push our container image to a repository:
 
-    ```shell
-    pushd app/v1
-    docker build -t kub-first-app:1.0 .
-    popd 
-    ```
-   
+   ```shell
+   pushd app/v1
+   docker build -t kub-first-app:1.0 .
+   popd
+   ```
+
 2. Using `kubectl`, create a new **Deployment** object:
 
    ```shell
@@ -55,7 +54,7 @@ To get our application deployed inside of Kubernetes, we have to prepare our con
      node-app-intro \
      --image=kub-first-app:1.0
    ```
-   
+
    > Check the status of pods using `kubectl get pods`
 
 3. Start the Kubernetes dashboard by running: `minikube dashboard`
@@ -70,33 +69,34 @@ To expose our application externally, we need to create a **Deployment** object 
 
 - Using `kubectl`, we can expose our application:
 
-   ```shell
-   kubectl expose deployment \
-     node-app-intro \
-     --type=LoadBalancer \
-     --port=8080 \
-     --name=node-app-deployment
-   ```
+  ```shell
+  kubectl expose deployment \
+    node-app-intro \
+    --type=LoadBalancer \
+    --port=8080 \
+    --name=node-app-deployment
+  ```
 
 - Our service is now exposed and can be verified with:
-   ```shell
-   kubectl get services
-   ```
 
-   --- 
+  ```shell
+  kubectl get services
+  ```
+
+  ***
 
   | NAME           | TYPE         | CLUSTER-IP   | EXTERNAL-IP |    PORT(S)     |   AGE |
-             |:---------------|:-------------|:-------------|:-----------:|:--------------:|------:|
+  | :------------- | :----------- | :----------- | :---------: | :------------: | ----: |
   | kubernetes     | ClusterIP    | 10.96.0.1    |  `<none>`   |    443/TCP     | 4h15m |
   | node-app-intro | LoadBalancer | 10.99.23.244 | `<pending>` | 8080:31155/TCP |   63s |
 
 - With our service exposed, we can view it with:
 
   ```shell
-  minikube service node-app-intro 
+  minikube service node-app-intro
   ```
 
-  ---
+  ***
 
   ![Application Running in Browser](../../../.attachments/Application-running-in-browser.png)
 
@@ -114,26 +114,26 @@ Here’s how we can demonstrate this feature using a simple application:
 
 1. We have an `/error` endpoint in our application that forces the app to crash:
 
-    ```javascript
-    app.get('/error', (req, res) => {
-      process.exit(1);
-    });
-    ```
+   ```javascript
+   app.get("/error", (req, res) => {
+     process.exit(1);
+   });
+   ```
 
 2. Trigger the crash by sending a `curl` request to the `/error` endpoint:
 
-    ```shell
-    curl http://192.168.49.2:31155/error
-    ```
+   ```shell
+   curl http://192.168.49.2:31155/error
+   ```
 
 3. This will crash the application, causing the container to stop running. Kubernetes will detect the failure and
    automatically restart the container. You can observe this by running the `kubectl get pods` command, which will show
    something like the following:
 
-   | NAME                           | READY |      STATUS      |    RESTARTS     |
-   |:-------------------------------|:-----:|:----------------:|:---------------:|
-   | node-app-intro-59bbb9498-cw96t |  0/1  |      Error       |  4 (4m40s ago)  |
-   | node-app-intro-59bbb9498-cw96t |  1/1  |     Running      |  5 (103s ago)   |
+   | NAME                           | READY | STATUS  |   RESTARTS    |
+   | :----------------------------- | :---: | :-----: | :-----------: |
+   | node-app-intro-59bbb9498-cw96t |  0/1  |  Error  | 4 (4m40s ago) |
+   | node-app-intro-59bbb9498-cw96t |  1/1  | Running | 5 (103s ago)  |
 
 4. As seen above, Kubernetes successfully restarted the container after the crash.
 
@@ -145,20 +145,20 @@ availability and load distribution.
 1. Currently, we have only one pod running in our cluster:
 
    | NAME                           | READY | STATUS  |
-   |:-------------------------------|:-----:|:-------:|
+   | :----------------------------- | :---: | :-----: |
    | node-app-intro-59bbb9498-cw96t |  1/1  | Running |
 
 2. To scale the deployment and run more instances of the application, we can use the following command to set the number
    of replicas to 3:
 
-    ```shell
-    kubectl scale deployment/node-app-intro --replicas=3
-    ```
+   ```shell
+   kubectl scale deployment/node-app-intro --replicas=3
+   ```
 
 3. Now, if we check the pods again, we should see three running instances of the application:
 
    | NAME                           | READY | STATUS  |
-   |:-------------------------------|:-----:|:-------:|
+   | :----------------------------- | :---: | :-----: |
    | node-app-intro-59bbb9498-cw96t |  1/1  | Running |
    | node-app-intro-59bbb9498-gjnrs |  1/1  | Running |
    | node-app-intro-59bbb9498-gzlxc |  1/1  | Running |
@@ -167,7 +167,7 @@ availability and load distribution.
    the crashed pod while the others remain unaffected:
 
    | NAME                           | READY | STATUS  |
-   |:-------------------------------|:-----:|:-------:|
+   | :----------------------------- | :---: | :-----: |
    | node-app-intro-59bbb9498-cw96t |  1/1  | Running |
    | node-app-intro-59bbb9498-gjnrs |  0/1  |  Error  |
    | node-app-intro-59bbb9498-gzlxc |  1/1  | Running |
@@ -184,49 +184,49 @@ application remains available during the update process.
 1. Let’s assume we’ve made an update to our application, such as adding a new feature or fixing a bug. The updated
    container image is pushed to the container registry.
 
-    ```shell
-    pushd app/v2
-    docker build -t kub-first-app:2.0 .
-    popd 
-    ```
+   ```shell
+   pushd app/v2
+   docker build -t kub-first-app:2.0 .
+   popd
+   ```
 
 2. To update the deployment, you can modify the image version used by your deployment. Run the following command,
    replacing `NEW_IMAGE_VERSION` with the new image tag:
 
-    ```shell
-    kubectl set image \
-      deployment/node-app-intro \
-      kub-first-app=kub-first-app:2.0
-    ```
+   ```shell
+   kubectl set image \
+     deployment/node-app-intro \
+     kub-first-app=kub-first-app:2.0
+   ```
 
 3. Kubernetes will begin a rolling update. You can check the progress using:
 
-    ```shell
-    kubectl rollout status deployment/node-app-intro
-    ```
+   ```shell
+   kubectl rollout status deployment/node-app-intro
+   ```
 
    During the update, Kubernetes replaces the pods one by one, ensuring that some instances of the old version are still
    running while the new ones are being created. This minimizes downtime and ensures a smooth transition.
 
 4. After the update, check the running pods to confirm that the new version is running:
 
-    ```shell
-    kubectl get pods
-    ```
+   ```shell
+   kubectl get pods
+   ```
 
    You should see the new pods running with the updated version of your application with an added `/health` endpoint.
 
-    ```shell
-    curl http://192.168.49.2:31155/health
-    ```
+   ```shell
+   curl http://192.168.49.2:31155/health
+   ```
 
-    ---
+   ***
 
    > If anything goes wrong during the update, you can easily roll back to the previous version using:
    >
-   >    ```shell
-   >   kubectl rollout undo deployment/node-app-intro
-   >   ```
+   > ```shell
+   > kubectl rollout undo deployment/node-app-intro
+   > ```
 
 This feature allows for safe, controlled updates and quick rollbacks in case of failure, ensuring continuous delivery of
 changes to your application.
@@ -238,6 +238,6 @@ changes to your application.
 ```shell
 kubectl delete service node-app-deployment
 kubectl delete deployment node-app-intro
-docker rmi kub-first-app:1.0 
+docker rmi kub-first-app:1.0
 docker rmi kub-first-app:2.0
 ```

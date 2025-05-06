@@ -55,7 +55,7 @@ minikube status
 
 ```yaml
 # docker-compose.yaml
-version: '3'
+version: "3"
 
 services:
   registry:

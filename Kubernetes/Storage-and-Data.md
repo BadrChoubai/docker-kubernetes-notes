@@ -110,4 +110,3 @@ Kubernetes offers a flexible and extensible storage management system that cater
 needs. By using Volumes, Persistent Volumes, Persistent Volume Claims, and Storage Classes, Kubernetes enables stateful
 workloads to coexist with stateless workloads, ensuring data availability and resilience across dynamic application
 environments.
-
